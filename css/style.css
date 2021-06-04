@@ -111,3 +111,210 @@
     font-size: 850%;
   
   }
+  .jugadoresSeleccion
+  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    /* align-items: center; */
+    flex: 1;
+    height: 100vh;
+    list-style: none;
+  }
+
+  .marco
+  {
+ 
+    background-color: white;
+    border-radius: 50%;
+  }
+
+
+  .form-register {
+    width: 400px;
+    background: #24303c;
+    padding: 30px;
+    margin: 2%;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+
+  }
+
+
+  
+  .form-register h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+  }
+  
+  .form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+  }
+  
+  .form-register a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .form-register a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .form-register .botons {
+    width: 100%;
+    background: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+  }
+
+  .mas
+  {
+    height: 15%;
+    background-color: yellowgreen;
+    color: white;
+    font-size: 200px;
+    display: flex;
+    align-content: center;
+    border-radius: 5%;
+    margin-top: 400px;
+    margin-left: 100px;
+    list-style: none;
+    box-shadow: 7px 13px 37px #000;
+    border-color: black;
+  }
+
+  .mas:hover
+  {
+    cursor: pointer;
+  }
+
+  .seleccion
+  {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: yellowgreen;
+    border-radius: 10%;
+    border:2px solid black;
+  }
+
+  .seleccion:hover
+  {
+    cursor: pointer;
+  }
+  .oculto
+  {
+    display: none;
+  }
+
+  .cerrar
+  {
+    text-align: right;
+  }
+
+  .cerrar:hover
+  {
+    cursor: pointer;
+  }
+
+/*para javascript modal para galeria  */
+
+.modalContainer
+{
+  display: none; 
+  position: fixed; 
+  z-index: 1;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modalContainer .modal-content
+{
+  display: flex;
+  justify-content:space-around;
+  align-items: revert;
+  flex-direction: row-reverse;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  animation-name: modal;
+  animation-duration: 3s;
+  margin-top: 30%;
+}
+
+@keyframes modal
+{
+
+  from{top:-330px; opacity: 0;}
+      to{top: 0; opacity: 1;}
+  
+}
+
+
+
+
+.modalContainer .close 
+{
+  color: #aaaaaa;
+  text-align: right;
+  font-size: 28px;
+  font-weight: bold;
+  
+}
+
+@media all and (max-width: 900px)
+{
+  .close .modalContainer {
+    color: #aaaaaa;
+    position:absolute;
+    left: 850px;
+    bottom: 95%;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+
+
+.modalContainer .close:hover,
+.modalContainer .close:focus 
+{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.imagenes
+{
+  border-radius: 50%;
+}
