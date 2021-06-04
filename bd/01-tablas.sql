@@ -1,0 +1,4 @@
+USE `bingo`;
+CREATE TABLE `cartones`(`id_carton` TINYINT PRIMARY KEY AUTO_INCREMENT, `numeros` VARCHAR(150) NOT NULL, `estado_default` VARCHAR(150) NOT NULL);
+CREATE TABLE `jugadores`(`id_jugador` TINYINT PRIMARY KEY AUTO_INCREMENT, `nombre_jugador` VARCHAR(50) NOT NULL, `id_carton_1` TINYINT, `id_carton_2` TINYINT, `id_carton_3` TINYINT, FOREIGN KEY (`id_carton_1`) REFERENCES `cartones`(`id_carton`), FOREIGN KEY (`id_carton_2`) REFERENCES `cartones`(`id_carton`), FOREIGN KEY (`id_carton_3`) REFERENCES `cartones`(`id_carton`));
+CREATE TABLE `partida`(`id_jugador` TINYINT ,`id_carton` TINYINT , `estado` VARCHAR(150) NOT NULL, FOREIGN KEY (`id_carton`) REFERENCES `cartones`(`id_carton`), FOREIGN KEY (`id_jugador`) REFERENCES `jugadores`(`id_jugador`));
