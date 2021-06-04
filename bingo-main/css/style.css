@@ -1,0 +1,113 @@
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Open Sans', sans-serif;
+
+}
+.cuerpo {
+    display: flex;  
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center; 
+  }
+  
+  .cuerpo > * {
+    padding: 20px;
+    flex: 1 100%;
+  }
+  
+  .cabecera 
+  {
+    background: purple;
+    margin: auto;
+  }
+    
+
+  .footer {
+    background: purple;
+  }
+  
+  .main {
+    text-align: center;
+    background: blanchedalmond;
+    height: 100vh;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+  }
+  
+  .lateral-1 {
+    background: white;
+  }
+  
+  .lateral-2 {
+    background: white;
+  }
+  
+  @media all and (min-width: 600px) {
+    .lateral { flex: 1 0 0; }
+  }
+  
+  @media all and (min-width: 800px) {
+    .main    { flex: 3 0px; }
+    .lateral-1 { order: 1; } 
+    .main    { order: 2; }
+    .lateral-2 { order: 3; }
+    .footer  { order: 4; }
+  }
+  
+
+
+  .jugadores
+  {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+      height: 100vh;
+      list-style: none;
+  }
+  li
+  {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+  }
+
+  div.bola {
+    left: 40%;
+    top: 50%;
+    width: 20%;
+    height:0;
+    padding-bottom: 20%;
+    background-size: cover;
+    background-repeat: repeat;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: -.75em -.25em 0 0 rgba(0,0,0,.1) inset,
+    .2em .1em 0 0 rgba(255,255,255,.2) inset;
+    animation: bolas 40s infinite linear;
+  }
+  
+  @keyframes bolas {
+    from {
+      background-position: left center;
+    }
+  
+    to {
+      background-position: -800px center;
+    }
+  }
+
+  div.bola > .numero
+  {
+    margin-top: 60px;
+    text-align: -webkit-center;
+    font-size: 850%;
+  
+  }
