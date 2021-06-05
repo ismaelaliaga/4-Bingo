@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.jugadores{
+    position: fixed;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 50vh;
+    width: 100vw;
+}
+.jugadoresTop{
+    align-items: flex-start;
+    top: 0px;
+}
+.jugadoresBottom{
+    align-items: flex-end;
+    bottom: 0px;
+}
+.jugadorContenedor{
+    border: 2px solid black;
+    padding: 10px 10px;
+    margin: 20px;
+    width: ;
+}
