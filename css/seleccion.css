@@ -203,6 +203,8 @@
     font-size: 18px;
     color: white;
   }
+
+
   
   select
   {
@@ -211,6 +213,7 @@
     border:1px solid #1f53c5;
     border-radius: 4px;
   }
+
   
   .form-register a {
     color: white;
@@ -230,6 +233,10 @@
     color: white;
     margin: 16px 0;
     font-size: 16px;
+  }
+  .botons:hover
+  {
+    cursor: pointer;
   }
 
   .mas

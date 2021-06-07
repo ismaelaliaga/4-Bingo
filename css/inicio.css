@@ -245,7 +245,7 @@ p
         width:700px;
         height:230px;
         position:fixed;
-        background-color:#FFFAFA;
+        background-image: url('../img/fondo.png');
         top:52%;
         left:40%;
         margin-left:-200px;

@@ -267,3 +267,130 @@ if(document.querySelector(".imagenes4"))
     });
 
 }
+
+// Aleatorio jugador 1
+
+if(document.getElementById("aleatorio"))
+{
+    const aleatorio = document.getElementById("aleatorio");
+    const prueba= document.getElementById("panel1");
+    let nombres=["Antonio","Pedro","Ismael","Alberto","Andres","Rafa","Jose Carlos","Maria Jose","Pablo","Jesus","Samuel","Moises","Manolo","Alberto.O","Pepe","Rigoberto","Javi","Sara","Victor","Rojo","Verde"];
+    aleatorio.addEventListener('click',function()
+    {
+        let valorOption=Math.floor(Math.random()*2)+1;
+        let valorImagen=Math.floor(Math.random()*13);
+        let valorNombres=Math.floor(Math.random()*20);
+        let NombresAleatorios=nombres[valorNombres];
+        document.getElementById("cartones").selectedIndex=valorOption;
+        prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
+        document.getElementById("nombres").value=NombresAleatorios;
+    })
+}
+
+// Aleatorio jugador 2
+
+if(document.getElementById("aleatorio2"))
+{
+    const aleatorio = document.getElementById("aleatorio2");
+    const prueba= document.getElementById("panel2");
+    let nombres=["Antonio","Pedro","Ismael","Alberto","Andres","Rafa","Jose Carlos","Maria Jose","Pablo","Jesus","Samuel","Moises","Manolo","Alberto.O","Pepe","Rigoberto","Javi","Sara","Victor","Rojo","Verde"];
+    aleatorio.addEventListener('click',function()
+    {
+        let valorOption=Math.floor(Math.random()*2)+1;
+        let valorImagen=Math.floor(Math.random()*13);
+        let valorNombres=Math.floor(Math.random()*20);
+        let NombresAleatorios=nombres[valorNombres];
+        document.getElementById("cartones2").selectedIndex=valorOption;
+        prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
+        document.getElementById("nombres2").value=NombresAleatorios;
+    })
+}
+
+// Aleatorio jugador 3
+
+if(document.getElementById("aleatorio3"))
+{
+    const aleatorio = document.getElementById("aleatorio3");
+    const prueba= document.getElementById("panel3");
+    let nombres=["Antonio","Pedro","Ismael","Alberto","Andres","Rafa","Jose Carlos","Maria Jose","Pablo","Jesus","Samuel","Moises","Manolo","Alberto.O","Pepe","Rigoberto","Javi","Sara","Victor","Rojo","Verde"];
+    aleatorio.addEventListener('click',function()
+    {
+        let valorOption=Math.floor(Math.random()*2)+1;
+        let valorImagen=Math.floor(Math.random()*13);
+        let valorNombres=Math.floor(Math.random()*20);
+        let NombresAleatorios=nombres[valorNombres];
+        document.getElementById("cartones3").selectedIndex=valorOption;
+        prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
+        document.getElementById("nombres3").value=NombresAleatorios;
+    })
+}
+
+// Aleatorio jugador 4
+
+if(document.getElementById("aleatorio4"))
+{
+    const aleatorio = document.getElementById("aleatorio4");
+    const prueba= document.getElementById("panel4");
+    let nombres=["Antonio","Pedro","Ismael","Alberto","Andres","Rafa","Jose Carlos","Maria Jose","Pablo","Jesus","Samuel","Moises","Manolo","Alberto.O","Pepe","Rigoberto","Javi","Sara","Victor","Rojo","Verde"];
+    aleatorio.addEventListener('click',function()
+    {
+        let valorOption=Math.floor(Math.random()*2)+1;
+        let valorImagen=Math.floor(Math.random()*13);
+        let valorNombres=Math.floor(Math.random()*20);
+        let NombresAleatorios=nombres[valorNombres];
+        document.getElementById("cartones4").selectedIndex=valorOption;
+        prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
+        document.getElementById("nombres4").value=NombresAleatorios;
+    })
+}
+
+//Aleatorios
+
+if(document.getElementById("aleatorios"))
+{
+    const aleatorios = document.getElementById("aleatorios");
+    const prueba= document.getElementById("panel1");
+    const prueba1= document.getElementById("panel2");
+    const prueba2= document.getElementById("panel3");
+    const prueba3= document.getElementById("panel4");
+    let nombres=["Antonio","Pedro","Ismael","Alberto","Andres","Rafa","Jose Carlos","Maria Jose","Pablo","Jesus","Samuel","Moises","Manolo","Alberto.O","Pepe","Rigoberto","Javi","Sara","Victor","Rojo","Verde"];
+    aleatorios.addEventListener('click',function()
+    {
+
+        
+        /*RANDOM PARA LAS IMAGENES DE CADA JUGADOR */
+        let valorImagen=Math.floor(Math.random()*13);
+        let valorImagen1=Math.floor(Math.random()*13);
+        let valorImagen2=Math.floor(Math.random()*13);
+        let valorImagen3=Math.floor(Math.random()*13);
+        /*RANDOM PARA LOS NOMBRES ALEATORIOS DE CADA JUGADOR */
+        let valorNombres=Math.floor(Math.random()*20);
+        let valorNombres1=Math.floor(Math.random()*20);
+        let valorNombres2=Math.floor(Math.random()*20);
+        let valorNombres3=Math.floor(Math.random()*20);
+
+        /*RANDOM PARA TODOS LOS CARTONES DE LOS JUGADORES */
+        let valorOption=Math.floor(Math.random()*2)+1;
+        let valorOption1=Math.floor(Math.random()*2)+1;
+        let valorOption2=Math.floor(Math.random()*2)+1;
+        let valorOption3=Math.floor(Math.random()*2)+1;
+
+        let NombresAleatorios=nombres[valorNombres];
+        let NombresAleatorios1=nombres[valorNombres1];
+        let NombresAleatorios2=nombres[valorNombres2];
+        let NombresAleatorios3=nombres[valorNombres3];
+
+        document.getElementById("cartones").selectedIndex=valorOption;
+        document.getElementById("cartones2").selectedIndex=valorOption1;
+        document.getElementById("cartones3").selectedIndex=valorOption2;
+        document.getElementById("cartones4").selectedIndex=valorOption3;
+        prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
+        prueba1.setAttribute("src", "../../img/jugadores/"+valorImagen1+".jpg");
+        prueba2.setAttribute("src", "../../img/jugadores/"+valorImagen2+".jpg");
+        prueba3.setAttribute("src", "../../img/jugadores/"+valorImagen3+".jpg");
+        document.getElementById("nombres").value=NombresAleatorios;
+        document.getElementById("nombres2").value=NombresAleatorios1;
+        document.getElementById("nombres3").value=NombresAleatorios2;
+        document.getElementById("nombres4").value=NombresAleatorios3;
+    })
+}
