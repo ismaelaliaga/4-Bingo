@@ -6,29 +6,94 @@
     font-family:'Open Sans', sans-serif;
 
 }
-.cuerpo {
-    display: flex;  
-    flex-flow: row wrap;
-    font-weight: bold;
-    text-align: center; 
-  }
-  
-  .cuerpo > * {
-    padding: 20px;
-    flex: 1 100%;
-  }
-  
-  .cabecera 
-  {
-    background: purple;
-    margin: auto;
-  }
-    
+
+/*Cabecera*/
+.cabecera 
+{
+  background: rgb(59,19,71);
+}
+.navegador
+{
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between;
+   
+   list-style: none;
+   margin: auto; 
+   background-image: url("../img/inicio/rayos.png");
+   background-position:10px;
+   background-repeat: repeat;
+
+ }
+ 
+ .navegador a {
+   text-decoration: none;
+   display: block;
+   padding: 1em;
+   color: white;
+   font-size: x-large;
+
+ }
+ 
+ .navegador a:hover {
+   background: #8cccf5;
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+ }
+ 
+ @media all and (max-width: 800px) {
+   .navegador {
+     justify-content: space-between;
+   }
+ }
+ 
+ @media all and (max-width: 600px) {
+   .navegador {
+     flex-flow: column wrap;
+     padding: 0;
+     
+   }
+   .cabecera_img{
+   margin: 0;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   }
+   .navegador a { 
+     text-align: center; 
+     padding: 10px;
+     border-top: 1px solid rgba(255, 255, 255,0.3); 
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+   }
+   .navegador li:last-of-type a {
+     border-bottom: none;
+   }
+ }
+
+ .cabecera_img
+ {
+     height:60px;
+     width: 100px;
+ }
+
+ .tittle
+ {
+   color: white;
+   padding: 1em;
+   font-size: x-large;
+ }
+
 
   .footer {
-    background: purple;
+    background: rgb(59,19,71);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    color: white;
   }
-  
+  /*Cuerpo*/
   .main {
     text-align: center;
     background: blanchedalmond;
@@ -36,15 +101,23 @@
     display: flex;
     align-items:center;
     justify-content: center;
+    background-image: url('../img/fondo.png');
   }
   
-  .lateral-1 {
-    background: white;
-  }
-  
-  .lateral-2 {
-    background: white;
-  }
+
+.cuerpo {
+  display: flex;  
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center; 
+}
+
+.cuerpo > * {
+  padding: 20px;
+  flex: 1 100%;
+}
+
+
   
   @media all and (min-width: 600px) {
     .lateral { flex: 1 0 0; }
@@ -58,7 +131,7 @@
     .footer  { order: 4; }
   }
   
-
+/*Selección de jugadores*/
 
   .jugadores
   {
@@ -78,47 +151,12 @@
       flex-direction: column;
   }
 
-  div.bola {
-    left: 40%;
-    top: 50%;
-    width: 20%;
-    height:0;
-    padding-bottom: 20%;
-    background-size: cover;
-    background-repeat: repeat;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: -.75em -.25em 0 0 rgba(0,0,0,.1) inset,
-    .2em .1em 0 0 rgba(255,255,255,.2) inset;
-    animation: bolas 40s infinite linear;
-  }
-  
-  @keyframes bolas {
-    from {
-      background-position: left center;
-    }
-  
-    to {
-      background-position: -800px center;
-    }
-  }
-
-  div.bola > .numero
-  {
-    margin-top: 60px;
-    text-align: -webkit-center;
-    font-size: 850%;
-  
-  }
   .jugadoresSeleccion
   {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    /* align-items: center; */
-    flex: 1;
     height: 80vh;
     list-style: none;
   }
@@ -129,7 +167,7 @@
     background-color: white;
     border-radius: 50%;
   }
-
+/* formulario para registrar jugadores*/
 
   .form-register {
     width: 400px;
@@ -141,10 +179,13 @@
     font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px #000;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
 
   }
-
-
   
   .form-register h4 {
     font-size: 22px;
@@ -163,11 +204,12 @@
     color: white;
   }
   
-  .form-register p {
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
+  select
+  {
+    background-color: #24303c;
+    color: white;
+    border:1px solid #1f53c5;
+    border-radius: 4px;
   }
   
   .form-register a {
@@ -235,6 +277,24 @@
   }
 
   .cerrar:hover
+  {
+    cursor: pointer;
+  }
+
+  .botones
+  {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+  }
+
+  .botones:hover
   {
     cursor: pointer;
   }
