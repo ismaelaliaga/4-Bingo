@@ -1,0 +1,30 @@
+{
+    "name": "daw/bingo",
+    "description": "IA 4 Jugadores Bingo",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Ismael Aliaga",
+            "email": "ismaelaliagamolina@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Daw\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Daw\\" : "tests/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
