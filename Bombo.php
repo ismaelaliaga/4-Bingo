@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 class Bombo {
     private array $bolas;
 
@@ -48,6 +50,7 @@ class Bombo {
                 fwrite($fichero, $valor . PHP_EOL);
             }
         }
+        fclose($fichero);
         return $cogerLaBola;
     }
 }
