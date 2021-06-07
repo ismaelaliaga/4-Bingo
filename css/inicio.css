@@ -8,6 +8,7 @@ body{
     font-family: 'Roboto', 'Sans serif';
 }
 
+/*Logotipo y animación de burbujas*/
 .contenedor{
     width: 90%;
     max-width: 1200px;
@@ -55,10 +56,18 @@ body{
 
 .banner_img img{
     width: 600px;
-    display: block;
-    
+    display: block;    
+}
 
+@media only screen and (max-width : 900px) 
+{
     
+    .banner_img img{
+    width: 300px;
+    display: block;    
+}
+
+
 }
 
 /* burbujas */
@@ -237,6 +246,8 @@ p
     font-size: 55px;
 }
 
+
+
 #container{
     opacity:.3;
     }
@@ -275,3 +286,25 @@ p
     .mayor{background-color:#F5F5DC;}
     .menor:hover{cursor: pointer;}
     .mayor:hover{cursor: pointer;}
+
+    /*rwd*/
+@media only screen and (max-width : 900px) 
+{
+    
+    .emergente{
+        width:445px;
+        height:210px;
+        position:fixed;
+        background-image: url('../img/fondo.png');
+        top:52%;
+        left:45%;
+        margin-left:-200px;
+        margin-top:-100px;
+        border:1px solid #000;
+        border-radius:10px;
+        padding:20px;
+        text-align:center;
+        box-shadow: 10px 10px 10px #ccc;
+    }
+      
+}
