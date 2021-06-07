@@ -4,7 +4,6 @@ USE `bingo`;
 CREATE TABLE `cartones`(`id_carton` TINYINT PRIMARY KEY AUTO_INCREMENT, `numeros` VARCHAR(150) NOT NULL, `estado_default` VARCHAR(150) NOT NULL);
 CREATE TABLE `jugadores`(`id_jugador` TINYINT PRIMARY KEY AUTO_INCREMENT, `nombre_jugador` VARCHAR(50) NOT NULL);
 CREATE TABLE `partida`(`id_jugador` TINYINT ,`id_carton` TINYINT , `estado` VARCHAR(150) NOT NULL, FOREIGN KEY (`id_carton`) REFERENCES `cartones`(`id_carton`), FOREIGN KEY (`id_jugador`) REFERENCES `jugadores`(`id_jugador`));
-INSERT INTO `jugadores`(`nombre_jugador`) VALUES ('Juan'),('Pepe'),('Sonia'),('Rafaela');
 INSERT INTO `cartones`(`id_carton`, `numeros`, `estado_default`) VALUES
 (1, '5, 10, NULL, NULL, 44, NULL, 62, 70, NULL, NULL, 16, NULL, 37, 47, NULL, NULL, 76, 81, 7, NULL, 21, 39, NULL, 58, NULL, NULL, 89', '0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 0, 2, 0, 0, 2, 0, 2, 2, 0'),
 (2, '1, NULL, 20, NULL, 45, 54, NULL, NULL, 83, 3, 14, NULL, 35, NULL, NULL, 66, 73, NULL, NULL, NULL, 22, 36, NULL, 56, NULL, 77, 87', '0, 2, 0, 2, 0, 0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 0, 0'),
@@ -66,9 +65,3 @@ INSERT INTO `cartones`(`id_carton`, `numeros`, `estado_default`) VALUES
 (58, '2, NULL, NULL, 36, NULL, 55, NULL, 74, 82, NULL, 16, 23, NULL, 49, NULL, 62, NULL, 85, 9, 17, NULL, 39, NULL, 58, NULL, 76, NULL', '0, 2, 2, 0, 2, 0, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2'),
 (59, 'NULL, 15, 25, NULL, 41, NULL, 64, NULL, 84, NULL, NULL, 26, NULL, 46, 57, NULL, 71, 87, 1, 18, NULL, 38, NULL, NULL, 67, 79, NULL', '2, 0, 0, 2, 0, 2, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2'),
 (60, 'NULL, 10, NULL, 31, 40, NULL, 61, 73, NULL, 3, NULL, 20, 37, NULL, 50, NULL, NULL, 86, NULL, 12, 28, NULL, 48, NULL, 69, NULL, 89', '2, 0, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (1, 10,'0, 2, 2, 0, 2, 0, 2, 0, 0, 2, 0, 0, 2,0, 2, 0, 0, 2, 0, 0, 2, 2, 0, 0, 2, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (2, 3,'2, 2, 0, 2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 0, 2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (2, 33,'0, 2, 0, 2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (3, 60,'2, 0, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (3, 1,'0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 0, 2, 0, 0, 2, 0, 2, 2, 0');
-INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) VALUES (3, 27,'0, 0, 2, 0, 2, 0, 2, 2, 0, 0, 2, 0, 2, 0, 2, 0, 0, 2, 2, 0, 2, 2, 0, 0, 2, 0, 0');
