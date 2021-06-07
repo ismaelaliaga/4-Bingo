@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+namespace Daw\Bingo;
+
 
 class Bombo {
     private array $bolas;
@@ -31,6 +33,7 @@ class Bombo {
             }
             unset($yaHaSidoSacada);
         }
+        return true;
     }
 
     public function sacarBola(){
@@ -53,6 +56,7 @@ class Bombo {
         fclose($fichero);
         return $cogerLaBola;
     }
+
 }
 
 // $bombo = new Bombo;
