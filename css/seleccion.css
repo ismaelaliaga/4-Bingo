@@ -51,7 +51,7 @@
  @media all and (max-width: 600px) {
    .navegador {
      flex-flow: column wrap;
-     padding: 0;
+     padding: 2em;
      
    }
    .cabecera_img{

@@ -32,13 +32,15 @@
 
 .numeros {
     padding: 0.5rem;
-    background: rgba(245, 245, 245, 0.335);
+    background: rgb(255 255 255 / 72%);
     color: black;
     width: 100px;
     height: 100px;
     font-size: xxx-large;
     text-align: center;
     position: relative;
+    font-weight: bold;
+
 }
 
 .tachado::after
