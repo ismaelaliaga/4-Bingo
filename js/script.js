@@ -163,6 +163,8 @@ if(document.querySelector(".imagenes2"))
            let ruta=imagen.dataset['ruta'];
 
            prueba.setAttribute("src", ruta);
+           document.getElementById("j2").value = ruta;
+
         });
     });
 
@@ -265,6 +267,8 @@ if(document.querySelector(".imagenes4"))
            let ruta=imagen.dataset['ruta'];
 
            prueba.setAttribute("src", ruta);
+           document.getElementById("j3").value = ruta;
+
         });
     });
 
@@ -307,6 +311,8 @@ if(document.getElementById("aleatorio2"))
         document.getElementById("cartones2").selectedIndex=valorOption;
         prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
         document.getElementById("nombres2").value=NombresAleatorios;
+        document.getElementById("j2").value ="../../img/jugadores/"+valorImagen+".jpg";
+
     })
 }
 
@@ -326,6 +332,8 @@ if(document.getElementById("aleatorio3"))
         document.getElementById("cartones3").selectedIndex=valorOption;
         prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
         document.getElementById("nombres3").value=NombresAleatorios;
+        document.getElementById("j3").value ="../../img/jugadores/"+valorImagen+".jpg";
+
     })
 }
 
@@ -345,6 +353,8 @@ if(document.getElementById("aleatorio4"))
         document.getElementById("cartones4").selectedIndex=valorOption;
         prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
         document.getElementById("nombres4").value=NombresAleatorios;
+        document.getElementById("j4").value ="../../img/jugadores/"+valorImagen+".jpg";
+
     })
 }
 
@@ -397,6 +407,10 @@ if(document.getElementById("aleatorios"))
         document.getElementById("nombres3").value=NombresAleatorios2;
         document.getElementById("nombres4").value=NombresAleatorios3;
         document.getElementById("j1").value ="../../img/jugadores/"+valorImagen+".jpg";
+        document.getElementById("j2").value ="../../img/jugadores/"+valorImagen1+".jpg";
+        document.getElementById("j3").value ="../../img/jugadores/"+valorImagen2+".jpg";
+        document.getElementById("j4").value ="../../img/jugadores/"+valorImagen3+".jpg";
+
 
     })
 }

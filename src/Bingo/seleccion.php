@@ -42,7 +42,7 @@
         <ul class="form-register" >
           <li><h4>JUGADOR 1</h4></li>
           <li> <img class="marco" id="panel1"   src="../../img/jugadores/0.jpg" ></li>
-          <input id="j1" name="j1" type="hidden" value="">
+          <input id="j1" name="j1" type="hidden" value="../../img/jugadores/0.jpg">
           <li><span class="seleccion" id="seleccion1">Seleccionar imagen</span>
           <div id="tvesModal" class="modalContainer">
                   <div class="modal-content">
@@ -75,6 +75,7 @@
         <li><span class="cerrar" id="cerrar1">X</span></li> 
         <li><h4>JUGADOR 2</h4></li>
         <li> <img class="marco" id="panel2" name="j2" src="../../img/jugadores/0.jpg" ></li>
+        <input id="j2" name="j2" type="hidden" value="../../img/jugadores/0.jpg">
         <li><span class="seleccion" id="seleccion2">Seleccionar imagen</span>
         <div id="tvesModal2" class="modalContainer2">
                 <div class="modal-content2">
@@ -91,9 +92,9 @@
         </li>
         <li><input class="controls" type="text" name="nombres2" id="nombres2" placeholder="Ingrese su Nombre"></li>
         <li>Cartones<select name="select2" id="cartones2">
-        <option value="value1" selected>1</option>
-        <option value="value2" >2</option>
-        <option value="value3">3</option>
+        <option value="1" selected>1</option>
+        <option value="2" >2</option>
+        <option value="3">3</option>
         </select>
         </li>
         <li>  <div class="botons" id="aleatorio2" >Aleatorio</div></li>
@@ -103,8 +104,8 @@
         <ul class="form-register oculto" id="jugador2">
         <li><span class="cerrar" id="cerrar2">X</span></li> 
         <li><h4>JUGADOR 3</h4></li>
-        <li> <img class="marco" id="panel3" name="j3" src="../../img/jugadores/0.jpg" ></li>
-        <input id="prodId" name="prodId" type="hidden" value="xm234jq">
+        <li> <img class="marco" id="panel3"  src="../../img/jugadores/0.jpg" ></li>
+        <input id="j3" name="j3" type="hidden" value="../../img/jugadores/0.jpg">
         <li><span class="seleccion" id="seleccion3">Seleccionar imagen</span>
         <div id="tvesModal3" class="modalContainer3">
                 <div class="modal-content3">
@@ -121,9 +122,9 @@
         </li>
         <li><input class="controls" type="text" name="nombres3" id="nombres3" placeholder="Ingrese su Nombre"></li>
         <li>Cartones<select name="select3" id="cartones3">
-        <option value="value1" selected>1</option>
-        <option value="value2" >2</option>
-        <option value="value3">3</option>
+        <option value="1" selected>1</option>
+        <option value="2" >2</option>
+        <option value="3">3</option>
         </select>
         </li>
         <li>  <div class="botons" id="aleatorio3"  >Aleatorio</div></li>
@@ -134,6 +135,7 @@
         <li><span class="cerrar" id="cerrar3">X</span></li> 
         <li><h4>JUGADOR 4</h4></li>
         <li> <img class="marco" id="panel4" name="j4"  src="../../img/jugadores/0.jpg" ></li>
+        <input id="j4" name="j4" type="hidden" value="../../img/jugadores/0.jpg">
         <li><span class="seleccion" id="seleccion4">Seleccionar imagen</span>
         <div id="tvesModal4" class="modalContainer4">
                 <div class="modal-content4">
@@ -150,9 +152,9 @@
         </li>
         <li><input class="controls" type="text" name="nombres4" id="nombres4" placeholder="Ingrese su Nombre"></li>
         <li>Cartones<select name="select4" id="cartones4">
-        <option value="value1" selected>1</option>
-        <option value="value2" >2</option>
-        <option value="value3">3</option>
+        <option value="1" selected>1</option>
+        <option value="2" >2</option>
+        <option value="3">3</option>
         </select>
         </li>
         <li>  <div class="botons" id="aleatorio4"  >Aleatorio</div></li>
@@ -174,10 +176,46 @@
 <?php
 if(isset($_POST['Jugar']))
 {
-   echo $imagenJ1=$_POST['j1'].'<br>';
-  echo $nombreJ1=$_POST['nombres'].'<br>';
-  echo $cartonJ1=$_POST['select'].'<br>';
-  echo 'aaaaaaaaaaaa';
+   $imagenJ1=$_POST['j1'].'<br>';
+   $nombreJ1=$_POST['nombres'].'<br>';
+   $cartonJ1=$_POST['select'].'<br>';
+
+  if($_POST['nombres2']!=null)
+  {
+     $imagenJ2=$_POST['j2'].'<br>';
+     $nombreJ2=$_POST['nombres2'].'<br>';
+     $cartonJ2=$_POST['select2'].'<br>';
+  }else
+  {
+    $imagenJ2=null;
+    $cartonJ2=null;
+    $imagenJ2=null;
+  }
+
+  if($_POST['nombres3']!=null)
+  {
+     $imagenJ3=$_POST['j3'].'<br>';
+     $nombreJ3=$_POST['nombres3'].'<br>';
+     $cartonJ3=$_POST['select3'].'<br>';
+  }else
+  {
+    $imagenJ3=null;
+    $cartonJ3=null;
+    $imagenJ3=null;
+  }
+
+  if($_POST['nombres4']!=null)
+  {
+     $imagenJ4=$_POST['j4'].'<br>';
+     $nombreJ4=$_POST['nombres4'].'<br>';
+     $cartonJ4=$_POST['select4'].'<br>';
+  }else
+  {
+    $imagenJ4=null;
+    $cartonJ4=null;
+    $imagenJ4=null;
+  }
+  
   
 }
 

@@ -710,7 +710,7 @@
   {
     background-color: yellowgreen;
     color: white;
-    font-size: 200px;
+    font-size: 115px;
     align-content: center;
     border-radius: 5%;
     margin-top: 33px;
@@ -719,6 +719,10 @@
     list-style: none;
     box-shadow: 7px 13px 37px #000;
     border-color: black;
+    position: fixed;
+    bottom:20px;
+    right:20px;   
+    margin-bottom: 18%;
   }
   
 
@@ -729,6 +733,7 @@
     position:fixed;
     background: rgb(59,19,71);
     color: white;
-
   }
+
+
 }
