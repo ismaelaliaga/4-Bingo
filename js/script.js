@@ -7,19 +7,19 @@ if(document.getElementById("mas"))
     const jugador4=document.getElementById("jugador3");
     bottons.addEventListener('click',function()
     {       
-        if(jugador2.style.display=="flow-root" && jugador3.style.display=="flow-root" && jugador4.style.display!="flow-root")
+        if(jugador2.style.display=="flex" && jugador3.style.display=="flex" && jugador4.style.display!="flex")
         {
-            jugador4 .style.display="flow-root";
+            jugador4 .style.display="flex";
         }
-        if(jugador3.style.display!="flow-root" && jugador2.style.display=="flow-root")
+        if(jugador3.style.display!="flex" && jugador2.style.display=="flex")
         {
-            jugador3.style.display="flow-root";
+            jugador3.style.display="flex";
         }
-        if(jugador2.style.display!="flow-root")
+        if(jugador2.style.display!="flex")
         {
-            jugador2.style.display="flow-root";
+            jugador2.style.display="flex";
         }
-        if(jugador2.style.display=="flow-root" && jugador3.style.display=="flow-root" && jugador4.style.display=="flow-root")
+        if(jugador2.style.display=="flex" && jugador3.style.display=="flex" && jugador4.style.display=="flex")
         {
             bottons.style.display="none";
         }

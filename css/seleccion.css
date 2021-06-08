@@ -16,11 +16,11 @@
 {
    display: flex;
    flex-flow: row wrap;
-   justify-content: space-between;
+   justify-content: center;
+   align-items: center;
    
    list-style: none;
    margin: auto; 
-   background-image: url("../img/inicio/rayos.png");
    background-position:10px;
    background-repeat: repeat;
 
@@ -29,7 +29,7 @@
  .navegador a {
    text-decoration: none;
    display: block;
-   padding: 1em;
+   padding: 0.5em;
    color: white;
    font-size: x-large;
 
@@ -38,8 +38,8 @@
  .navegador a:hover {
    background: #8cccf5;
    width: 100%;
-   height: 100%;
-   border-radius: 50%;
+   height: 20%;
+   border-radius: 30%;
  }
  
  @media all and (min-width: 800px) {
@@ -103,6 +103,9 @@
     align-items:center;
     justify-content: center;
     background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
   
 
@@ -118,34 +121,7 @@
 }
 
 
-  
-  /* @media all and (min-width: 600px) {
-    .lateral { flex: 1 0 0; }
-  }
-  
-  @media all and (max-width: 900px) {
-    .main    { flex: 3 0px; }
-    .main    { order: 2; }
-    .footer  { order: 4; }
-  }
 
-  @media all and (max-width: 900px) {
-
-    .cuerpo {
-        -webkit-flex-flow: column;
-        flex-flow: column;
-    }
-
-    .cuerpo > article, .cuerpo > nav, .cuerpo > aside {
-        -webkit-order: 0;
-        order: 0;
-    }
-
-    .cuerpo > nav, .cuerpo > aside, header, footer {
-        min-height: 20%;
-        max-height: 30%;
-    }
-} */
   
 /*Selección de jugadores*/
 
@@ -172,7 +148,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: center;
     height: 80vh;
     list-style: none;
   }
@@ -185,11 +161,16 @@
  
     background-color: white;
     border-radius: 50%;
+    width:220px;
+    height:220px;
+    background-repeat: no-repeat;
+    object-position: center;
+    object-fit: cover;
   }
 /* formulario para registrar jugadores*/
 
   .form-register {
-    width: 400px;
+    width: 21.5wv;
     height: 100%;
     background: #24303c;
     padding: 30px;
@@ -275,9 +256,11 @@
     box-shadow: 7px 13px 37px #000;
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-content: space-around;
     justify-content: center;
+    align-items: center;
 
+    
 
   }
   
@@ -302,7 +285,20 @@
   {
     display: none;
   }
-}
+
+  .cuerpo
+  {
+    height:auto;
+    margin-bottom:20%;
+  }
+
+  .main
+  {
+    height:auto;
+  }
+
+  
+} 
 
   .mas
   {
@@ -355,16 +351,15 @@
 
   .botones
   {
-    width: auto;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
+    background-color: #1f53c5;
+    padding: 2px;
+    box-shadow: 7px 13px 37px #000;
+    border-radius: 9%;
+    border: 2px solid black;
     color: white;
   }
+
+
 
   .botones:hover
   {
@@ -392,9 +387,10 @@
 .modalContainer .modal-content
 {
   display: flex;
-  justify-content:space-around;
-  align-items: revert;
-  flex-direction: row-reverse;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  width: 100%;
+  flex-direction: row;
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
@@ -450,6 +446,7 @@
 .imagenes
 {
   border-radius: 50%;
+ 
 }
 
 /*para javascript modal para galeria panel 2  */
@@ -472,9 +469,10 @@
 .modalContainer2 .modal-content2
 {
   display: flex;
-  justify-content:space-around;
-  align-items: revert;
-  flex-direction: row-reverse;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  width: 100%;
+  flex-direction: row;
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
@@ -552,9 +550,10 @@
 .modalContainer3 .modal-content3
 {
   display: flex;
-  justify-content:space-around;
-  align-items: revert;
-  flex-direction: row-reverse;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  width: 100%;
+  flex-direction: row;
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
@@ -632,9 +631,10 @@
 .modalContainer4 .modal-content4
 {
   display: flex;
-  justify-content:space-around;
-  align-items: revert;
-  flex-direction: row-reverse;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  width: 100%;
+  flex-direction: row;
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
@@ -702,25 +702,23 @@
     flex-direction:column;
     flex-wrap: nowrap;
     justify-content: space-between;
-    height: 50%;
+    height: auto;
     list-style: none;
+    margin:0;
   }
   .mas
   {
-    height: 15%;
     background-color: yellowgreen;
     color: white;
     font-size: 200px;
-    display: flex;
     align-content: center;
     border-radius: 5%;
     margin-top: 33px;
-    margin-left: 130px;
-    margin-right: 154px;
+    margin-left: auto;
+    margin-right: auto;
     list-style: none;
     box-shadow: 7px 13px 37px #000;
     border-color: black;
-    justify-content: space-around;
   }
   
 

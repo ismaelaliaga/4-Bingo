@@ -9,31 +9,36 @@
     <title>Bingo!</title>
 </head>
 <body>
-<div class="cuerpo">
-  <header class="cabecera">
+<header class="cabecera">
+<form method="POST">
     <nav class="navegador">
       <ul>
       <li><img src="../../img/logot.png" class="cabecera_img"></li>
       </ul>
       <ul>
+      <li class="tittle" id="aleatorios"><div class="botones">Todos Aleatorios</div></li>
+      </ul>
+      <ul>
         <li><h1 class="tittle">Selección de jugadores</h1></li>
+      </ul>
+      <ul>
+      <li class="tittle" > <input class="botones tittle" type="submit" value="Jugar"></li>
       </ul>
       <ul>
         <li><a  class="salir" href="./index.html">Salir</a></li>
       </ul>
     </nav>
   </header>
+<div class="cuerpo">
   <article class="main">
-  <form method="POST">
-  <input class=" botones" type="submit" value="Registrar">
-  <div class="botones"  id="aleatorios">Todos Aleatorios</div>
+
 
 
     <ul class="jugadoresSeleccion">
 
         <ul class="form-register" >
           <li><h4>JUGADOR 1</h4></li>
-          <li> <img class="marco" id="panel1"  src="../../img/jugadores/0.jpg" height="250px"></li>
+          <li> <img class="marco" id="panel1"  src="../../img/jugadores/0.jpg" ></li>
           <li><span class="seleccion" id="seleccion1">Seleccionar imagen</span>
           <div id="tvesModal" class="modalContainer">
                   <div class="modal-content">
@@ -41,7 +46,7 @@
           <?php
               for($i=0;$i<=13;$i++)
               {
-                echo "<img class=imagenes data-ruta=../../img/jugadores/$i.jpg width=220px height=220px src=../../img/jugadores/$i.jpg>";
+                echo "<img class=imagenes data-ruta=../../img/jugadores/$i.jpg  src=../../img/jugadores/$i.jpg>";
               }
           ?>
 
@@ -64,7 +69,7 @@
         <ul class="form-register oculto" id="jugador1">
         <li><span class="cerrar" id="cerrar1">X</span></li> 
         <li><h4>JUGADOR 2</h4></li>
-        <li> <img class="marco" id="panel2" src="../../img/jugadores/0.jpg" height="250px"></li>
+        <li> <img class="marco" id="panel2" src="../../img/jugadores/0.jpg" ></li>
         <li><span class="seleccion" id="seleccion2">Seleccionar imagen</span>
         <div id="tvesModal2" class="modalContainer2">
                 <div class="modal-content2">
@@ -93,7 +98,7 @@
         <ul class="form-register oculto" id="jugador2">
         <li><span class="cerrar" id="cerrar2">X</span></li> 
         <li><h4>JUGADOR 3</h4></li>
-        <li> <img class="marco" id="panel3" src="../../img/jugadores/0.jpg" height="250px"></li>
+        <li> <img class="marco" id="panel3" src="../../img/jugadores/0.jpg" ></li>
         <li><span class="seleccion" id="seleccion3">Seleccionar imagen</span>
         <div id="tvesModal3" class="modalContainer3">
                 <div class="modal-content3">
@@ -122,7 +127,7 @@
         <ul class="form-register oculto" id="jugador3">
         <li><span class="cerrar" id="cerrar3">X</span></li> 
         <li><h4>JUGADOR 4</h4></li>
-        <li> <img class="marco" id="panel4"  src="../../img/jugadores/0.jpg" height="250px"></li>
+        <li> <img class="marco" id="panel4"  src="../../img/jugadores/0.jpg" ></li>
         <li><span class="seleccion" id="seleccion4">Seleccionar imagen</span>
         <div id="tvesModal4" class="modalContainer4">
                 <div class="modal-content4">
