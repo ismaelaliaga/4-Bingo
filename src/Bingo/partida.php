@@ -8,9 +8,20 @@
     <title>Bingo</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <nav id="menu">
+                <ul>
+                    <li><img id="logoMenu" src="../../img/logot.png"/></li>
+                    <form method="post" id="formMenu">
+                        <li><button class="botonMenu">Reiniciar</button></li>
+                        <li><button class="botonMenu">Finalizar</button></li>
+                    </form>
+                </ul>
+        </nav>
+    </header>
     <main>
         <section id="tablero">
+            <span>Tirada 10</span>
             <h2 id="bola">
                 5
             </h2>
@@ -18,7 +29,9 @@
         </section>
         <div id="ventanaLogContenedor">
             <section id="ventanaLog">
-                ¡Bienvenidos a la partida!
+            <ul>
+                <li>¡Bienvenidos a la partida! ¡Buenas suerte!</li>
+            </ul>
             </section>
         </div>
         <section class="jugadores jugadoresTop">
@@ -30,7 +43,7 @@
                 </div>
             </article>
             <article class="jugadorContenedor">
-                <img class="imgJugador" src="./img/jugadores/1.jpg"/>
+                <img class="imgJugador" src="../../img/jugadores/1.jpg"/>
                 <h2 class="nombreJugadoor">Felipe</h2>
                 <div class="cartonesContenedor">
 
@@ -39,14 +52,14 @@
         </section>
         <section class="jugadores jugadoresBottom">
             <article class="jugadorContenedor">
-                <img class="imgJugador" src="./img/jugadores/2.jpg"/>
+                <img class="imgJugador" src="../../img/jugadores/2.jpg"/>
                 <h2 class="nombreJugadoor">Gabriel</h2>
                 <div class="cartonesContenedor">
 
                 </div>
             </article>
             <article class="jugadorContenedor">
-                <img class="imgJugador" src="./img/jugadores/3.jpg"/>
+                <img class="imgJugador" src="../../img/jugadores/3.jpg"/>
                 <h2 class="nombreJugadoor">Antonio</h2>
                 <div class="cartonesContenedor">
 
