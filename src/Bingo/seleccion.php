@@ -10,7 +10,7 @@
 </head>
 <body>
 <header class="cabecera">
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <nav class="navegador">
       <ul>
       <li><img src="../../img/logot.png" class="cabecera_img"></li>
@@ -22,7 +22,10 @@
         <li><h1 class="tittle">Selección de jugadores</h1></li>
       </ul>
       <ul>
-      <li class="tittle" > <input class="botones tittle" type="submit" value="Jugar"></li>
+      <li class="tittle" > <input class="botones tittle" name="Jugar" type="submit" value="Jugar"></li>
+      </ul>
+      <ul>
+        <li>  <li class="tittle" > <a class="botones tittle" href="./partida.php?continuar=1">Continuar partida</a></li></li>
       </ul>
       <ul>
         <li><a  class="salir" href="./index.html">Salir</a></li>
@@ -38,7 +41,8 @@
 
         <ul class="form-register" >
           <li><h4>JUGADOR 1</h4></li>
-          <li> <img class="marco" id="panel1"  src="../../img/jugadores/0.jpg" ></li>
+          <li> <img class="marco" id="panel1"   src="../../img/jugadores/0.jpg" ></li>
+          <input id="j1" name="j1" type="hidden" value="">
           <li><span class="seleccion" id="seleccion1">Seleccionar imagen</span>
           <div id="tvesModal" class="modalContainer">
                   <div class="modal-content">
@@ -46,7 +50,7 @@
           <?php
               for($i=0;$i<=13;$i++)
               {
-                echo "<img class=imagenes data-ruta=../../img/jugadores/$i.jpg  src=../../img/jugadores/$i.jpg>";
+                echo "<img class=imagenes data-ruta=../../img/jugadores/$i.jpg  height=220px src=../../img/jugadores/$i.jpg>";
               }
           ?>
 
@@ -55,11 +59,12 @@
         </li>
 
 
-        <li><input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre"></li>
-        <li>Cartones<select name="select" id="cartones">
-        <option value="1" selected>1</option>
-        <option value="2" >2</option>
-        <option value="3">3</option>
+        <li><input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required></li>
+        <li>Cartones
+        <select name="select" id="cartones">
+          <option value="1" selected>1</option>
+          <option value="2" >2</option>
+          <option value="3">3</option>
         </select>
         </li>
         <li>  <div class="botons" id="aleatorio"  >Aleatorio</div></li>
@@ -69,7 +74,7 @@
         <ul class="form-register oculto" id="jugador1">
         <li><span class="cerrar" id="cerrar1">X</span></li> 
         <li><h4>JUGADOR 2</h4></li>
-        <li> <img class="marco" id="panel2" src="../../img/jugadores/0.jpg" ></li>
+        <li> <img class="marco" id="panel2" name="j2" src="../../img/jugadores/0.jpg" ></li>
         <li><span class="seleccion" id="seleccion2">Seleccionar imagen</span>
         <div id="tvesModal2" class="modalContainer2">
                 <div class="modal-content2">
@@ -84,8 +89,8 @@
         </div>
         </div>
         </li>
-        <li><input class="controls" type="text" name="nombres" id="nombres2" placeholder="Ingrese su Nombre"></li>
-        <li>Cartones<select name="select" id="cartones2">
+        <li><input class="controls" type="text" name="nombres2" id="nombres2" placeholder="Ingrese su Nombre"></li>
+        <li>Cartones<select name="select2" id="cartones2">
         <option value="value1" selected>1</option>
         <option value="value2" >2</option>
         <option value="value3">3</option>
@@ -98,7 +103,8 @@
         <ul class="form-register oculto" id="jugador2">
         <li><span class="cerrar" id="cerrar2">X</span></li> 
         <li><h4>JUGADOR 3</h4></li>
-        <li> <img class="marco" id="panel3" src="../../img/jugadores/0.jpg" ></li>
+        <li> <img class="marco" id="panel3" name="j3" src="../../img/jugadores/0.jpg" ></li>
+        <input id="prodId" name="prodId" type="hidden" value="xm234jq">
         <li><span class="seleccion" id="seleccion3">Seleccionar imagen</span>
         <div id="tvesModal3" class="modalContainer3">
                 <div class="modal-content3">
@@ -113,8 +119,8 @@
         </div>
         </div>
         </li>
-        <li><input class="controls" type="text" name="nombres" id="nombres3" placeholder="Ingrese su Nombre"></li>
-        <li>Cartones<select name="select" id="cartones3">
+        <li><input class="controls" type="text" name="nombres3" id="nombres3" placeholder="Ingrese su Nombre"></li>
+        <li>Cartones<select name="select3" id="cartones3">
         <option value="value1" selected>1</option>
         <option value="value2" >2</option>
         <option value="value3">3</option>
@@ -127,7 +133,7 @@
         <ul class="form-register oculto" id="jugador3">
         <li><span class="cerrar" id="cerrar3">X</span></li> 
         <li><h4>JUGADOR 4</h4></li>
-        <li> <img class="marco" id="panel4"  src="../../img/jugadores/0.jpg" ></li>
+        <li> <img class="marco" id="panel4" name="j4"  src="../../img/jugadores/0.jpg" ></li>
         <li><span class="seleccion" id="seleccion4">Seleccionar imagen</span>
         <div id="tvesModal4" class="modalContainer4">
                 <div class="modal-content4">
@@ -142,8 +148,8 @@
         </div>
         </div>
         </li>
-        <li><input class="controls" type="text" name="nombres" id="nombres4" placeholder="Ingrese su Nombre"></li>
-        <li>Cartones<select name="select" id="cartones4">
+        <li><input class="controls" type="text" name="nombres4" id="nombres4" placeholder="Ingrese su Nombre"></li>
+        <li>Cartones<select name="select4" id="cartones4">
         <option value="value1" selected>1</option>
         <option value="value2" >2</option>
         <option value="value3">3</option>
@@ -164,3 +170,15 @@
 <script src="../../js/script.js"></script>
 </body>
 </html>
+
+<?php
+if(isset($_POST['Jugar']))
+{
+   echo $imagenJ1=$_POST['j1'].'<br>';
+  echo $nombreJ1=$_POST['nombres'].'<br>';
+  echo $cartonJ1=$_POST['select'].'<br>';
+  echo 'aaaaaaaaaaaa';
+  
+}
+
+?>

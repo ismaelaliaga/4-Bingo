@@ -107,9 +107,11 @@ if(document.querySelector(".imagenes"))
     {
         imagen.addEventListener('click',function()
         {
+            debugger;
            let ruta=imagen.dataset['ruta'];
 
            prueba.setAttribute("src", ruta);
+           document.getElementById("j1").value = ruta;
         });
     });
 
@@ -284,6 +286,8 @@ if(document.getElementById("aleatorio"))
         document.getElementById("cartones").selectedIndex=valorOption;
         prueba.setAttribute("src", "../../img/jugadores/"+valorImagen+".jpg");
         document.getElementById("nombres").value=NombresAleatorios;
+        document.getElementById("j1").value ="../../img/jugadores/"+valorImagen+".jpg";
+
     })
 }
 
@@ -392,5 +396,7 @@ if(document.getElementById("aleatorios"))
         document.getElementById("nombres2").value=NombresAleatorios1;
         document.getElementById("nombres3").value=NombresAleatorios2;
         document.getElementById("nombres4").value=NombresAleatorios3;
+        document.getElementById("j1").value ="../../img/jugadores/"+valorImagen+".jpg";
+
     })
 }
