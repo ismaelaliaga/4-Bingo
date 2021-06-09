@@ -6,6 +6,8 @@ final class Bombo {
     private array $bolas;
 
     public function __construct(){
+
+        //$bolasDisponibles no se utiliza??
         $bolasDisponibles = array();
         $contadorDeFgets = 0;
 
@@ -24,29 +26,6 @@ final class Bombo {
         if(isset($string)){
             $bolasSacadas = explode(" ", $string);
         }
-        // for($i = 1; $i <= 90-count($bolasSacadas); $i++){
-        //     if($i == 1){
-        //         foreach($bolasSacadas as $valor){
-        //             if($i == $valor){
-        //                 $yaHaSidoSacada = TRUE;
-        //             }
-        //         }
-        //         if(!isset($yaHaSidoSacada)){
-        //             $this->bolas = array(1 => "1");
-        //         }
-        //     }
-        //     else{
-        //         foreach($bolasSacadas as $valor){
-        //             if($i == $valor){
-        //                 $yaHaSidoSacada = TRUE;
-        //             }
-        //         }
-        //         if(!isset($yaHaSidoSacada)){
-        //             array_push($this->bolas, $i); 
-        //         }
-        //     }
-        //     unset($yaHaSidoSacada);
-        // }
 
         for($i = 1; $i <= 90; $i++){
             if($i == 1){
@@ -67,16 +46,10 @@ final class Bombo {
     }
 
     public function sacarBola(){
-        // $bolasDisponibles = array();
-        // foreach($this->bolas as $valor){
-        //     array_push($bolasDisponibles, $valor); 
-        // }
 
-        // $numeroDeBolas = count($bolasDisponibles);
         $numeroDeBolas = count($this->bolas);
         $girarElBombo = rand(0, $numeroDeBolas-1);
 
-        // $cogerLaBola = $bolasDisponibles[$girarElBombo];
         $cogerLaBola = $this->bolas[$girarElBombo];
 
         $fichero = fopen("bolas.txt", "ab+");
@@ -87,32 +60,6 @@ final class Bombo {
 
         $this->bolas = array_values($this->bolas);
 
-        // foreach($this->bolas as $valor){
-        //     if($cogerLaBola == $valor){
-        //         $fichero = fopen("bolas.txt", "ab+");
-        //         fwrite($fichero, $valor . PHP_EOL);
-        //     }
-        // }
-        // fclose($fichero);
         return $cogerLaBola;
     }
 }
-
-// $bombo = new Bombo;
-// print_r($bombo);
-
-// echo $bombo->sacarBola();
-// print_r($bombo);
-
-// $string = "";
-// $fichero = fopen("bolas.txt", "rb+");
-// while($a = fgets($fichero)){
-//     $string = $string . " " . $a;
-// }
-
-
-// $bombo = new Bombo($string);
-// print_r($bombo);
-// fwrite($fichero, $valor);
-
-// echo $bombo->sacarBola();

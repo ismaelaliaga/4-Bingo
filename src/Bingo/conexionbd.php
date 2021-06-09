@@ -1,15 +1,12 @@
 <?php
-$servidor = "localhost";
-$user = "root";
-$password = "";
-$database = "bingo";
 
-//Conectar con la base de datos
+$servidor= "localhost";
+$user= "root";
+$password= NULL;
+$database= "bingo";
 
-$bd = new mysqli($servidor, $user, $password, $database);
+$db = new mysqli($servidor,$user, $password,$database);
 
-//Comprobar la conexion con la base de datos
-
-if ($bd->connect_error) {
-    die("La conexión con la bd ha fallado. Error: " . $bd->connect_errno . ": " . $bd->connect_error);
+if($db->connect_error){ 
+    die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
 }

@@ -1,6 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+function crearPartida($nombreJ1, $cartonesJ1, $nombreJ2, $cartonesJ2, $nombreJ3, $cartonesJ3,
+$nombreJ4, $cartonesJ4){
+    $partida = new Bingo("$nombreJ1", $cartonesJ1, "$nombreJ2", $cartonesJ2, "$nombreJ3", $cartonesJ3,
+    "$nombreJ4", $cartonesJ4);
+    return $partida;
+}
+
 function cantarLinea($id){
+    require_once ('conexionbd.php');
+
     $esteCartonHaCantadoLinea = FALSE;
     $fichero = fopen("cantarlinea.txt", "rb+");
     $a = intval(fgets($fichero));
@@ -11,22 +22,11 @@ function cantarLinea($id){
         $esteCartonHaCantadoLinea = TRUE;
     }
     
-    $servidor= "localhost";
-    $user= "root";
-    $password= NULL;
-    $database= "bingo";
-
-    $db = new mysqli($servidor,$user, $password,$database);
-
-    if($db->connect_error){ 
-        die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-    } 
-
-    $sentencia = $db->prepare("SELECT `estado` FROM `partida` WHERE `id_carton` = ?"); 
-    $sentencia->bind_param('i', $id); 
-    $sentencia->execute();
-    $sentencia->bind_result($estado);
-    $sentencia->fetch();
+    $estadoCartonActual = $db->prepare("SELECT `estado` FROM `partida` WHERE `id_carton` = ?"); 
+    $estadoCartonActual->bind_param('i', $id); 
+    $estadoCartonActual->execute();
+    $estadoCartonActual->bind_result($estado);
+    $estadoCartonActual->fetch();
 
     $arrayDeNumeros = explode(", ", $estado);
     $estadoCarton[0] = array();
@@ -54,33 +54,22 @@ function cantarLinea($id){
     }
 
     if($cantarBingo == TRUE){
-        $db2 = new mysqli($servidor,$user, $password,$database);
 
-        if($db2->connect_error){ 
-            die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-        } 
-
-        $sentencia2 = $db2->prepare("SELECT `j`.`id_jugador`, `j`.`nombre_jugador` FROM `jugadores` `j`
+        $selectIdYNombreJugador = $db->prepare("SELECT `j`.`id_jugador`, `j`.`nombre_jugador` FROM `jugadores` `j`
         INNER JOIN `partida` `p` ON `j`.`id_jugador` = `p`.`id_jugador`
         INNER JOIN `cartones` `c` ON `c`.`id_carton` = `p`.`id_carton`
         WHERE `p`.`id_carton` = ?"); 
-        $sentencia2->bind_param('i', $id); 
-        $sentencia2->execute();
-        $sentencia2->bind_result($idJugador, $nombreJugador);
-        $sentencia2->fetch();
-        
-        $db4 = new mysqli($servidor,$user, $password,$database);
+        $selectIdYNombreJugador->bind_param('i', $id); 
+        $selectIdYNombreJugador->execute();
+        $selectIdYNombreJugador->bind_result($idJugador, $nombreJugador);
+        $selectIdYNombreJugador->fetch();
 
-        if($db4->connect_error){ 
-            die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-        } 
-
-        $sentencia4 = $db4->prepare("INSERT INTO `log`(`log`) VALUES(?)");
-        $sentencia4->bind_param('s', $string); 
+        $insertLogBingo = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
+        $insertLogBingo->bind_param('s', $string); 
         $string = "El jugador $nombreJugador ha cantado bingo en el cartón $id.";
-        $sentencia4->execute();
-        $sentencia4->fetch();
-        $sentencia4->close();
+        $insertLogBingo->execute();
+        $insertLogBingo->fetch();
+        $insertLogBingo->close();
 
         return $idJugador;
     }
@@ -129,39 +118,24 @@ function cantarLinea($id){
 }
 
 function cantarLineaEnBD($id){
-    // $id = intval($id);
-    $servidor= "localhost";
-    $user= "root";
-    $password= NULL;
-    $database= "bingo";
 
-    $db3 = new mysqli($servidor,$user, $password,$database);
+    require_once ('conexionbd.php');
 
-    if($db3->connect_error){ 
-        die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-    } 
-
-    $sentencia3 = $db3->prepare("SELECT `nombre_jugador` FROM `jugadores` `j`
+    $selectNombreJugador = $db->prepare("SELECT `nombre_jugador` FROM `jugadores` `j`
     INNER JOIN `partida` `p` ON `j`.`id_jugador` = `p`.`id_jugador`
     INNER JOIN `cartones` `c` ON `c`.`id_carton` = `p`.`id_carton`
     WHERE `p`.`id_carton` = ?"); 
-    $sentencia3->bind_param('i', $id); 
-    $sentencia3->execute();
-    $sentencia3->bind_result($nombreJugador);
-    $sentencia3->fetch();
+    $selectNombreJugador->bind_param('i', $id); 
+    $selectNombreJugador->execute();
+    $selectNombreJugador->bind_result($nombreJugador);
+    $selectNombreJugador->fetch();
 
-    $db2 = new mysqli($servidor,$user, $password,$database);
-
-    if($db2->connect_error){ 
-        die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-    } 
-
-    $sentencia2 = $db2->prepare("INSERT INTO `log`(`log`) VALUES(?)");
-    $sentencia2->bind_param('s', $string); 
+    $insertLogLinea = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
+    $insertLogLinea->bind_param('s', $string); 
     $string = "El jugador $nombreJugador ha cantado línea en el cartón $id.";
-    $sentencia2->execute();
-    $sentencia2->fetch();
-    $sentencia2->close();
+    $insertLogLinea->execute();
+    $insertLogLinea->fetch();
+    $insertLogLinea->close();
 
     $fichero = fopen("cantarlinea.txt", "ab+");
     fwrite($fichero, 1 . PHP_EOL);
@@ -170,37 +144,26 @@ function cantarLineaEnBD($id){
 
 
 function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
-    $servidor= "localhost";
-    $user= "root";
-    $password= NULL;
-    $database= "bingo";
 
-    $db = new mysqli($servidor,$user, $password,$database);
+    require_once ('conexionbd.php');
 
-    if($db->connect_error){ 
-        die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
-    } 
-
-    $sentencia = $db->prepare("SELECT `p`.`estado`, `c`.`numeros` 
+    $selectEstado = $db->prepare("SELECT `p`.`estado`, `c`.`numeros` 
     FROM `partida` `p`
     INNER JOIN `cartones` `c` ON `p`.`id_carton` = `c`.`id_carton`
     WHERE `p`.`id_carton` = ?"); 
-    $sentencia->bind_param('i', $idCarton); 
-    $sentencia->execute();
-    $sentencia->bind_result($estado, $numeros);
-    $sentencia->fetch();
-    $sentencia->close();
+    $selectEstado->bind_param('i', $idCarton); 
+    $selectEstado->execute();
+    $selectEstado->bind_result($estado, $numeros);
+    $selectEstado->fetch();
+    $selectEstado->close();
 
     $carton = explode(", ", $numeros);
 
     foreach($carton as $indice => $valor){
         if(intval($valor) == $numeroBombo){
-            // echo"El número $numero está en este cartón";
+
             $posicionACambiar = $indice;
         }
-        // else{
-        //     echo "El número $numero no es igual al número $valor</br>";
-        // }
     }
 
     if(isset($posicionACambiar)){
@@ -216,35 +179,27 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
         }
 
         $nuevoEstado = $string;
-        $db2 = new mysqli($servidor,$user, $password,$database);
 
-        $sentencia2 = $db2->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
-        $sentencia2->bind_param('s', $string); 
+        $insertLogTachado = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
+        $insertLogTachado->bind_param('s', $string); 
         $string = "El número $numeroBombo se encuentra en el cartón ".$idCarton;
-        // $sentencia->bind_param('s', $this->id); 
-        $sentencia2->execute();
-        // $sentencia->bind_result($estado);
-        $sentencia2->fetch();
-        $sentencia2->close();
+        $insertLogTachado->execute();
+        $insertLogTachado->fetch();
+        $insertLogTachado->close();
 
-        $db3 = new mysqli($servidor,$user, $password,$database);
-
-        $sentencia3 = $db3->prepare("UPDATE `partida` SET `estado` = '$nuevoEstado' WHERE `id_carton` = ?");
-        $sentencia3->bind_param('i', $idCarton);
-        $sentencia3->execute();
-        $sentencia3->close();
+        $updateEstadoCarton = $db->prepare("UPDATE `partida` SET `estado` = '$nuevoEstado' WHERE `id_carton` = ?");
+        $updateEstadoCarton->bind_param('i', $idCarton);
+        $updateEstadoCarton->execute();
+        $updateEstadoCarton->close();
 
     }
     else{
-        $db4 = new mysqli($servidor,$user, $password,$database);
 
-        $sentencia4 = $db4->prepare("INSERT INTO `log`(`log`) VALUES(?)");
-        $sentencia4->bind_param('s', $string); 
+        $insertLogNumNoCarton = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
+        $insertLogNumNoCarton->bind_param('s', $string); 
         $string = "El número $numeroBombo no se encuentra en el cartón {$idCarton}";
-        // $sentencia->bind_param('s', $this->id); 
-        $sentencia4->execute();
-        // $sentencia->bind_result($estado);
-        $sentencia4->fetch();
-        $sentencia4->close();
+        $insertLogNumNoCarton->execute();
+        $insertLogNumNoCarton->fetch();
+        $insertLogNumNoCarton->close();
     }
 }

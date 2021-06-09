@@ -43,11 +43,3 @@ final class Bingo {
         
     }
 }
-
-// $bingo = new Bingo("Pepe",3,"María",2,"Antonio",3,"Sandra",1);
-// $jugador = $bingo->getJugador(1);
-// $cartones = $jugador->getCartones();
-// $cartones[0];
-// $cartones[1];
-// $cartones[2];
-// var_dump($cartones); 

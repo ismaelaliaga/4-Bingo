@@ -5,19 +5,7 @@ include_once('funciones.php');
 require_once ('Bombo.php');
 $bombo = new Bombo;
 
-echo $a = $bombo->sacarBola();
-
-// $fichero = fopen("bolas.txt", "rb+");
-// while($a = intval(fgets($fichero))){
-// if($contadorDeFgets == 0){
-//                 $string = trim("$a");
-//                 $contadorDeFgets++;
-//             }
-//             else{
-//                 $string = $string . " " . trim("$a");
-//             }
-//         }
-// fclose($fichero);
+$a = $bombo->sacarBola();
 
 buscarNumeroEnElCarton($a,3);
 buscarNumeroEnElCarton($a,5);
@@ -34,4 +22,3 @@ cantarLinea(6);
 cantarLinea(4);
 cantarLinea(7);
 cantarLinea(9);
-
