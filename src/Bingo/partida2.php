@@ -5,20 +5,37 @@ include_once('funciones.php');
 require_once ('Bombo.php');
 $bombo = new Bombo;
 
-$a = $bombo->sacarBola();
+echo $a = $bombo->sacarBola();
 
-buscarNumeroEnElCarton($a,3);
-buscarNumeroEnElCarton($a,5);
-buscarNumeroEnElCarton($a,8);
-buscarNumeroEnElCarton($a,6);
-buscarNumeroEnElCarton($a,4);
-buscarNumeroEnElCarton($a,7);
-buscarNumeroEnElCarton($a,9);
+// $fichero = fopen("bolas.txt", "rb+");
+// while($a = intval(fgets($fichero))){
+// if($contadorDeFgets == 0){
+//                 $string = trim("$a");
+//                 $contadorDeFgets++;
+//             }
+//             else{
+//                 $string = $string . " " . trim("$a");
+//             }
+//         }
+// fclose($fichero);
 
-cantarLinea(3);
-cantarLinea(5);
-cantarLinea(8);
-cantarLinea(6);
-cantarLinea(4);
-cantarLinea(7);
-cantarLinea(9);
+$servidor= "localhost";
+$user= "root";
+$password= NULL;
+$database= "bingo";
+
+$db = new mysqli($servidor,$user, $password,$database);
+
+if($db->connect_error){ 
+    die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
+} 
+
+$sentencia = $db->prepare("SELECT `id_carton` FROM `partida`");
+$sentencia->execute();
+$sentencia->bind_result($numeros);
+while($sentencia->fetch()){
+    buscarNumeroEnElCarton($a, $numeros);
+    cantarLinea($numeros);
+}
+
+
