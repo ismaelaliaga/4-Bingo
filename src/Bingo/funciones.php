@@ -82,7 +82,7 @@ function cantarLinea($id){
         $sentencia4->fetch();
         $sentencia4->close();
 
-        return $idJugador;
+        return $idJugador . "bingo";
     }
     elseif($esteCartonHaCantadoLinea == FALSE){
         foreach($estadoCarton[0] as $valor){
@@ -92,7 +92,8 @@ function cantarLinea($id){
         }
         
         if($cantarLinea == TRUE){
-            cantarLineaEnBD($id);
+            $idJugador = cantarLineaEnBD($id);
+            return $idJugador . "línea";
         }
         elseif($cantarLinea == FALSE){
             $cantarLinea = TRUE;
@@ -104,7 +105,8 @@ function cantarLinea($id){
             }
 
             if($cantarLinea == TRUE){
-                cantarLineaEnBD($id);
+                $idJugador = cantarLineaEnBD($id);
+                return $idJugador . "línea";
             }
         }
         elseif($cantarLinea == FALSE){
@@ -116,7 +118,8 @@ function cantarLinea($id){
             }
 
             if($cantarLinea == TRUE){
-                cantarLineaEnBD($id);
+                $idJugador = cantarLineaEnBD($id);
+                return $idJugador . "línea";
             }
         }
         else{
@@ -141,13 +144,13 @@ function cantarLineaEnBD($id){
         die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
     } 
 
-    $sentencia3 = $db3->prepare("SELECT `nombre_jugador` FROM `jugadores` `j`
+    $sentencia3 = $db3->prepare("SELECT `j`.`nombre_jugador`, `j`.`id_jugador` FROM `jugadores` `j`
     INNER JOIN `partida` `p` ON `j`.`id_jugador` = `p`.`id_jugador`
     INNER JOIN `cartones` `c` ON `c`.`id_carton` = `p`.`id_carton`
     WHERE `p`.`id_carton` = ?"); 
     $sentencia3->bind_param('i', $id); 
     $sentencia3->execute();
-    $sentencia3->bind_result($nombreJugador);
+    $sentencia3->bind_result($nombreJugador, $idJugador);
     $sentencia3->fetch();
 
     $db2 = new mysqli($servidor,$user, $password,$database);
@@ -164,8 +167,10 @@ function cantarLineaEnBD($id){
     $sentencia2->close();
 
     $fichero = fopen("cantarlinea.txt", "ab+");
-    fwrite($fichero, 1 . PHP_EOL);
+    fwrite($fichero, 2 . PHP_EOL);
     fclose($fichero);
+
+    return $idJugador;
 }
 
 
