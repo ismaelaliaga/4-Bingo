@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class Bombo {
+final class Bombo {
     private array $bolas;
 
     public function __construct(){
@@ -48,7 +48,7 @@ class Bombo {
         //     unset($yaHaSidoSacada);
         // }
 
-        for($i = 1; $i <= 60; $i++){
+        for($i = 1; $i <= 90; $i++){
             if($i == 1){
                 $totalDeBolasPosibles = array(1 => $i);
             }

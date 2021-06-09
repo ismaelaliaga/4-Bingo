@@ -3,7 +3,7 @@
 declare(strict_types=1);
 require_once ('Jugador.php');
 
-class Bingo {
+final class Bingo {
     private Jugador $jugador1;
     private Jugador $jugador2;
     private Jugador $jugador3;

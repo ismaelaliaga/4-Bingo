@@ -3,12 +3,12 @@
 declare(strict_types=1);
 require_once ('Carton.php');
 
-class Jugador {
+final class Jugador {
     // private static $id;
     private string $nombre;
     private Carton $carton1;
-    private  $carton2;
-    private  $carton3;
+    private $carton2;
+    private $carton3;
 
     public function __construct($nombre, $numeroCartones){
         $this->nombre = $nombre;
@@ -38,8 +38,8 @@ class Jugador {
         switch($numeroCartones){
             case 1:
                 $this->carton1 = new Carton;
-                // $this->carton2 = new stdClass;
-                // $this->carton3 = new stdClass;
+                $this->carton2 = null;
+                $this->carton3 = null;
 
                 $sentencia = $db->prepare("INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) 
                 VALUES(?, ?, ?)");
@@ -57,6 +57,7 @@ class Jugador {
             case 2:
                 $this->carton1 = new Carton;
                 $this->carton2 = new Carton;
+                $this->carton3 = null;
 
                 $sentencia = $db->prepare("INSERT INTO `partida`(`id_jugador`,`id_carton`,`estado`) 
                 VALUES(?, ?, ?)");
@@ -118,6 +119,10 @@ class Jugador {
     public function getCartones(){
         $array = array($this->carton1,$this->carton2,$this->carton3);
         return $array;
+    }
+
+    public function cantarLinea(){
+
     }
 }
 
