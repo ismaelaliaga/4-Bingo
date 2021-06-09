@@ -59,7 +59,7 @@ body{
     justify-content: space-between;
     height: 50vh;
     width: 100vw;
-    z-index: -1;
+    z-index: 2;
 }
 .jugadoresTop{
     align-items: flex-start;
@@ -72,6 +72,7 @@ body{
 .jugadorContenedor{
     background-color: #24303c;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     border: 2px solid black;
@@ -82,13 +83,16 @@ body{
     color: white;
 }
 .imgJugador{
-    height: 200px;
-    width: 200px;
+    height: 120px;
+    width: 120px;
     border-radius: 20%;
     border: 20px solid #f08945;
     background-repeat: no-repeat;
     object-position: center;
     object-fit: cover;
+}
+.nombreJugador{
+    margin: 0px;
 }
 #ventanaLogContenedor{
     position: fixed;
@@ -114,6 +118,7 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 70px;
+    z-index: 1;
 }
 #bola{
     background-color: white;
@@ -140,5 +145,38 @@ body{
     border: 1px solid black;
     height: 90%;
     margin: 10px 10px;
+    padding-left: 20px;
     overflow-y: auto;
+}
+.cartonesContenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.minicartonContenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    margin: 2px;
+}
+.minicarton{
+    border: 1px solid black;
+    background-color: white;
+}
+.minicarton td{
+    font-size: 5px;
+    height: 8px;
+    width: 8px;
+    border: 1px solid black;
+    color: red;
+}
+.minicartonContenedor h3{
+    margin: 5px;
+}
+.minicarton .nulo{
+    background-color: #3b13477c;
 }
