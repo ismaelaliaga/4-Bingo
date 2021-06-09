@@ -39,7 +39,6 @@ final class Jugador {
                 $arrayConLosCartones = $this->getCartones();
                 $idCarton = $arrayConLosCartones[0]->devolverID();
                 $estado = $arrayConLosCartones[0]->obtenerEstado();
-                var_dump($idCarton);
                 $insertPartida->bind_param('iis', $id, $idCarton, $estado); 
                 $insertPartida->execute();
                 $insertPartida->fetch();
@@ -57,7 +56,6 @@ final class Jugador {
                 $arrayConLosCartones = $this->getCartones();
                 $idCarton = $arrayConLosCartones[0]->devolverID();
                 $estado = $arrayConLosCartones[0]->obtenerEstado();
-                var_dump($idCarton);
                 $insertPartida->bind_param('iis', $id, $idCarton, $estado); 
                 $insertPartida->execute();
                 $insertPartida->fetch();
@@ -79,7 +77,6 @@ final class Jugador {
                 $arrayConLosCartones = $this->getCartones();
                 $idCarton = $arrayConLosCartones[0]->devolverID();
                 $estado = $arrayConLosCartones[0]->obtenerEstado();
-                var_dump($idCarton);
                 $insertPartida->bind_param('iis', $id, $idCarton, $estado); 
                 $insertPartida->execute();
                 $insertPartida->fetch();
