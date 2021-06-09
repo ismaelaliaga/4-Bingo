@@ -11,7 +11,7 @@ final class Jugador {
     private $carton3;
 
     public function __construct($nombre, $numeroCartones){
-        require_once ('conexionbd.php');
+         include ('./conexionbd.php');
 
         $this->nombre = $nombre;
 
