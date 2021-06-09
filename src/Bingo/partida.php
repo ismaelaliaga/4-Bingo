@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../css/estilosPartida.css">
     <link href="../../css/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../img/icono.ico" type="image/x-icon">
     <title>Bingo</title>
 </head>
 <body>
@@ -401,9 +402,46 @@
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/3.jpg"/>
                 <h2 class="nombreJugador">Antonio</h2>
-                <div class="cartonesContenedor">
-
-                </div>
+                <section class="cartonesContenedor">
+                    <article class="minicartonContenedor">
+                        <h3>5/15</h3>
+                        <table class="minicarton">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </article>
+                </section>
             </article>
         </section>
     </main>
