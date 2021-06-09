@@ -182,12 +182,12 @@ if(isset($_POST['Jugar']))
 
   if($_POST['nombres2']!=null)
   {
-     $imagenJ2=$_POST['j2'].'<br>';
+     $imagenJ2=$_POST['j2'];
      $nombreJ2=$_POST['nombres2'];
      $cartonJ2=$_POST['select2'];
   }else
   {
-    $imagenJ2=null;
+    $nombreJ2=null;
     $cartonJ2=null;
     $imagenJ2=null;
   }
@@ -199,7 +199,7 @@ if(isset($_POST['Jugar']))
      $cartonJ3=$_POST['select3'];
   }else
   {
-    $imagenJ3=null;
+    $nombreJ3=null;
     $cartonJ3=null;
     $imagenJ3=null;
   }
@@ -211,16 +211,16 @@ if(isset($_POST['Jugar']))
      $cartonJ4=$_POST['select4'];
   }else
   {
-    $imagenJ4=null;
+    $nombreJ4=null;
     $cartonJ4=null;
     $imagenJ4=null;
   }
-// require_once ('Bingo.php');
-// require_once ('Jugador.php');
-// require_once ('Carton.php');
-// require_once ('funciones.php');
+require_once ('Bingo.php');
+require_once ('Jugador.php');
+require_once ('Carton.php');
+require_once ('funciones.php');
 
-// $partidaComenzada = crearpartida($nombreJ1, $cartonJ1, $nombreJ2, $cartonJ2, $nombreJ3, $cartonJ3, $nombreJ4, $cartonJ4);
+$partidaComenzada = crearpartida($nombreJ1, $cartonJ1,$imagenJ1, $nombreJ2, $cartonJ2, $imagenJ2, $nombreJ3, $cartonJ3, $imagenJ3, $nombreJ4, $cartonJ4,$imagenJ4);
   
 }
 

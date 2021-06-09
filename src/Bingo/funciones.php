@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-function crearPartida($nombreJ1, $cartonesJ1, $nombreJ2, $cartonesJ2, $nombreJ3, $cartonesJ3,
-$nombreJ4, $cartonesJ4){
-    $partida = new Bingo("$nombreJ1", $cartonesJ1, "$nombreJ2", $cartonesJ2, "$nombreJ3", $cartonesJ3,
-    "$nombreJ4", $cartonesJ4);
+function crearPartida($nombreJ1, $cartonesJ1, $imagenJ1, $nombreJ2, $cartonesJ2,$imagenJ2, $nombreJ3, $cartonesJ3, $imagenJ3,
+$nombreJ4, $cartonesJ4, $imagenJ4){
+    $partida = new Bingo("$nombreJ1", $cartonesJ1, $imagenJ1, "$nombreJ2", $cartonesJ2,$imagenJ2, "$nombreJ3", $cartonesJ3, $imagenJ3,
+    "$nombreJ4", $cartonesJ4, $imagenJ4);
     return $partida;
 }
 

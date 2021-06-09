@@ -5,18 +5,19 @@ require_once ('Carton.php');
 
 final class Jugador {
 
-    private string $nombre;
+    private ?string $nombre;
     private Carton $carton1;
+    private ?string $imagen;
     private $carton2;
     private $carton3;
 
-    public function __construct($nombre, $numeroCartones){
+    public function __construct($nombre, $numeroCartones,$imagen){
          include ('./conexionbd.php');
 
         $this->nombre = $nombre;
-
-        $insertNombre = $db->prepare("INSERT INTO `jugadores`(`nombre_jugador`) VALUES(?)");
-        $insertNombre->bind_param('s', $this->nombre); 
+        $this->imagen = $imagen;
+        $insertNombre = $db->prepare("INSERT INTO `jugadores`(`nombre_jugador`,`imagen_jugador`) VALUES(?,?)");
+        $insertNombre->bind_param('ss', $this->nombre, $this->imagen); 
         $insertNombre->execute();
         $insertNombre->close();
 

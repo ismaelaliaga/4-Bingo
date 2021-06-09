@@ -9,13 +9,13 @@ final class Carton {
 
 
     public function __construct(){
-        require_once ('conexionbd.php');
+        include ('conexionbd.php');
 
         $cartonesDisponibles = array();
         $contadorDeFgets = 0;
 
         //Abre el fichero para obtener los cartones que no están disponibles, los guarda en $cartonesSacados
-        $fichero = fopen("cartones.txt", "rb+");
+        $fichero = fopen("cartones.txt", "w+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");
@@ -88,7 +88,7 @@ final class Carton {
 
     public function obtenerEstado(){
 
-        require_once ('conexionbd.php');
+        include ('conexionbd.php');
 
         $estadoDefault = $db->prepare("SELECT `estado_default` FROM `cartones` WHERE `id_carton` = ?"); 
         $estadoDefault->bind_param('i', $this->id); 
