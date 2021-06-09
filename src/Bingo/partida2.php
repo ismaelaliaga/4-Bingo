@@ -19,19 +19,23 @@ echo $a = $bombo->sacarBola();
 //         }
 // fclose($fichero);
 
-buscarNumeroEnElCarton($a,3);
-buscarNumeroEnElCarton($a,5);
-buscarNumeroEnElCarton($a,8);
-buscarNumeroEnElCarton($a,6);
-buscarNumeroEnElCarton($a,4);
-buscarNumeroEnElCarton($a,7);
-buscarNumeroEnElCarton($a,9);
+$servidor= "localhost";
+$user= "root";
+$password= NULL;
+$database= "bingo";
 
-cantarLinea(3);
-cantarLinea(5);
-cantarLinea(8);
-cantarLinea(6);
-cantarLinea(4);
-cantarLinea(7);
-cantarLinea(9);
+$db = new mysqli($servidor,$user, $password,$database);
+
+if($db->connect_error){ 
+    die("La conexión con la bd ha fallado, error: " . $db->connect_errno . ": ". $db->connect_error); 
+} 
+
+$sentencia = $db->prepare("SELECT `id_carton` FROM `partida`");
+$sentencia->execute();
+$sentencia->bind_result($numeros);
+while($sentencia->fetch()){
+    buscarNumeroEnElCarton($a, $numeros);
+    cantarLinea($numeros);
+}
+
 
