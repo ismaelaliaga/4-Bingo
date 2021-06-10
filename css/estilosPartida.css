@@ -102,6 +102,7 @@ body{
     justify-content: center;
     bottom: 0px;
     width: 100vw;
+    z-index: 3;
 }
 #ventanaLog{
     width: 30vw;
