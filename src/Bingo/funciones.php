@@ -10,7 +10,7 @@ $nombreJ4, $cartonesJ4, $imagenJ4){
 }
 
 function cantarLinea($id){
-    require_once ('conexionbd.php');
+    include ('./conexionbd.php');
 
     $esteCartonHaCantadoLinea = FALSE;
     $fichero = fopen("cantarlinea.txt", "rb+");
@@ -27,6 +27,7 @@ function cantarLinea($id){
     $estadoCartonActual->execute();
     $estadoCartonActual->bind_result($estado);
     $estadoCartonActual->fetch();
+    $estadoCartonActual->close();
 
     $arrayDeNumeros = explode(", ", $estado);
     $estadoCarton[0] = array();
@@ -63,6 +64,7 @@ function cantarLinea($id){
         $selectIdYNombreJugador->execute();
         $selectIdYNombreJugador->bind_result($idJugador, $nombreJugador);
         $selectIdYNombreJugador->fetch();
+        $selectIdYNombreJugador->close();
 
         $insertLogBingo = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
         $insertLogBingo->bind_param('s', $string); 
@@ -119,7 +121,7 @@ function cantarLinea($id){
 
 function cantarLineaEnBD($id){
 
-    require_once ('conexionbd.php');
+    include ('./conexionbd.php');
 
     $selectNombreJugador = $db->prepare("SELECT `nombre_jugador` FROM `jugadores` `j`
     INNER JOIN `partida` `p` ON `j`.`id_jugador` = `p`.`id_jugador`
@@ -129,7 +131,8 @@ function cantarLineaEnBD($id){
     $selectNombreJugador->execute();
     $selectNombreJugador->bind_result($nombreJugador);
     $selectNombreJugador->fetch();
-
+    $selectNombreJugador->close();
+    
     $insertLogLinea = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
     $insertLogLinea->bind_param('s', $string); 
     $string = "El jugador $nombreJugador ha cantado línea en el cartón $id.";
@@ -145,7 +148,7 @@ function cantarLineaEnBD($id){
 
 function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
-    require_once ('conexionbd.php');
+    include ('./conexionbd.php');
 
     $selectEstado = $db->prepare("SELECT `p`.`estado`, `c`.`numeros` 
     FROM `partida` `p`
@@ -206,7 +209,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
 function reiniciarPartida(){
 
-    require_once ('conexionbd.php');
+    include ('./conexionbd.php');
 
     $ficheroCartones = fopen("cartones.txt", "w+");
     fclose($ficheroCartones);
@@ -230,9 +233,5 @@ function reiniciarPartida(){
     }
     $deleteJugadores->close();
 
-    $alterAutoIncrement = $db->prepare("ALTER TABLE `jugadores` AUTO_INCREMENT = ?");
-    $alterAutoIncrement->bind_param('i', $autoincr);
-    $autoincr=1;
-    $alterAutoIncrement->execute();
-    $alterAutoIncrement->close();
+    
 }
