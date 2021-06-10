@@ -229,4 +229,10 @@ function reiniciarPartida(){
         $deleteJugadores->execute();
     }
     $deleteJugadores->close();
+
+    $alterAutoIncrement = $db->prepare("ALTER TABLE `jugadores` AUTO_INCREMENT = ?");
+    $alterAutoIncrement->bind_param('i', $autoincr);
+    $autoincr=1;
+    $alterAutoIncrement->execute();
+    $alterAutoIncrement->close();
 }
