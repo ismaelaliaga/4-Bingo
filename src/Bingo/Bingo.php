@@ -38,8 +38,4 @@ final class Bingo {
         $array = array($this->jugador1,$this->jugador2,$this->jugador3,$this->jugador4);
         return $array;
     }
-
-    public function comenzarPartida(){
-        
-    }
 }
