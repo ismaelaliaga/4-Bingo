@@ -175,12 +175,11 @@ body{
 }
 .minicarton td{
     font-size: 5px;
-    min-height: 8px;
-    min-width: 8px;
-    height: 8px;
-    width: 8px;
+    height: 12px;
+    width: 12px;
     border: 1px solid black;
     color: red;
+    text-align: center;
 }
 .minicartonContenedor h3{
     margin: 5px;

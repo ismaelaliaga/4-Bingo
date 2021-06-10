@@ -2,18 +2,20 @@
 declare(strict_types=1);
 namespace Daw\Bingo;
 require_once ('./Bombo.php');
-include_once ('funciones.php');
-include ('./conexionbd.php');
-$bombo = new Bombo;
-
-$a = $bombo->sacarBola();
-
-$sentencia = $db->prepare("SELECT `id_carton` FROM `partida`");
-$sentencia->execute();
-$sentencia->bind_result($numeros);
-while($sentencia->fetch()){
-    buscarNumeroEnElCarton($a, $numeros);
-    cantarLinea($numeros);
+include_once('funciones.php');
+include('./conexionbd.php');
+$tirada=0;
+if (isset($_POST['sacarBola'])) {
+    $tirada++;
+    $bombo = new Bombo;
+    $bola = $bombo->sacarBola();
+    $sentencia = $db->prepare("SELECT `id_carton` FROM `partida`");
+    $sentencia->execute();
+    $sentencia->bind_result($numeros);
+    while($sentencia->fetch()){
+        buscarNumeroEnElCarton($bola, $numeros);
+        cantarLinea($numeros);
+    }
 }
 $jugador1=obtenerJugador($db, 1);
 $jugador2=obtenerJugador($db, 2);
@@ -44,11 +46,17 @@ $jugador4=obtenerJugador($db, 4);
     </header>
     <main>
         <section id="tablero">
-            <span>Tirada 10</span>
+            <span>Tirada <?php echo $tirada; ?></span>
             <h2 id="bola">
-                5
+                <?php
+                    if (isset($bola)) {
+                        echo $bola;
+                    }
+                ?>
             </h2>
-            <button id="sacarBolaBoton">Sacar bola</button>
+            <form method="post">
+                <button id="sacarBolaBoton" name="sacarBola">Sacar bola</button>
+            </form>
         </section>
         <div id="ventanaLogContenedor">
             <section id="ventanaLog">
@@ -58,19 +66,15 @@ $jugador4=obtenerJugador($db, 4);
             </section>
         </div>
         <section class="jugadores jugadoresTop">
-            
+            <?php 
+                $cartonesEstado=obtenerEstadoCarton($db, 1);
+                $jugador1->bind_result($id, $nombre, $imagen);
+                $jugador1->fetch();
+                imprimirJugador($nombre, $imagen, $id, $cartonesEstado)
+            ?>
         </section>
         <section class="jugadores jugadoresBottom">
 
-        </section>
-            </article>
-            <article class="jugadorContenedor">
-                <img class="imgJugador" src="../../img/jugadores/3.jpg"/>
-                <h2 class="nombreJugador">Antonio</h2>
-                <section class="cartonesContenedor" id="4">
-
-                </section>
-            </article>
         </section>
         <section id="cartonesModalContenedor">
             <article class="cartonesJugadorModal" id="-1">
