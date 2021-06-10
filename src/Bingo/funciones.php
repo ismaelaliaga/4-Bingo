@@ -203,3 +203,30 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
         $insertLogNumNoCarton->close();
     }
 }
+
+function reiniciarPartida(){
+
+    require_once ('conexionbd.php');
+
+    $ficheroCartones = fopen("cartones.txt", "w+");
+    fclose($ficheroCartones);
+
+    $ficheroBolas = fopen("bolas.txt", "w+");
+    fclose($ficheroBolas);
+
+    $truncateLog = $db->prepare("TRUNCATE `log`");
+    $truncateLog->execute();
+    $truncateLog->close();
+
+    $truncatePartida = $db->prepare("TRUNCATE `partida`");
+    $truncatePartida->execute();
+    $truncatePartida->close();
+
+    $deleteJugadores = $db->prepare("DELETE FROM `jugadores` WHERE `jugadores`.`id_jugador` = ?");
+    $deleteJugadores->bind_param('i', $id); 
+    for($i=1;$i>4;$i++){
+        $id=$i;
+        $deleteJugadores->execute();
+    }
+    $deleteJugadores->close();
+}
