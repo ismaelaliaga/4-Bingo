@@ -68,7 +68,7 @@ function cantarLinea($id){
 
         $insertLogBingo = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
         $insertLogBingo->bind_param('s', $string); 
-        $string = "El jugador $nombreJugador ha cantado bingo en el cartón $id.";
+        $string = "¡$nombreJugador ha cantado <b>bingo<b> en el cartón $id!";
         $insertLogBingo->execute();
         $insertLogBingo->fetch();
         $insertLogBingo->close();
@@ -135,7 +135,7 @@ function cantarLineaEnBD($id){
     
     $insertLogLinea = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
     $insertLogLinea->bind_param('s', $string); 
-    $string = "El jugador $nombreJugador ha cantado línea en el cartón $id.";
+    $string = "$nombreJugador ha cantado <b>línea<b> en el cartón $id.";
     $insertLogLinea->execute();
     $insertLogLinea->fetch();
     $insertLogLinea->close();
@@ -150,7 +150,7 @@ function escribirBolaLog($bola){
     include ('./conexionbd.php');
     $insertLogBolaSacada = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
     $insertLogBolaSacada->bind_param('s', $string); 
-    $string = "El bombo ha sacado la bola $bola";
+    $string = "El bombo ha sacado el $bola";
     $insertLogBolaSacada->execute();
     $insertLogBolaSacada->fetch();
     $insertLogBolaSacada->close();
@@ -207,7 +207,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
         $insertLogTachado = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
         $insertLogTachado->bind_param('s', $string); 
-        $string = "El jugador $nombreJugador tacha el número <b>$numeroBombo</b> en el cartón $idCarton";
+        $string = "$nombreJugador tacha el <b>$numeroBombo</b> en el cartón $idCarton";
         $insertLogTachado->execute();
         $insertLogTachado->fetch();
         $insertLogTachado->close();
@@ -304,7 +304,7 @@ function imprimirLog($db)
     $logSelect->bind_result($log,$hora_log);
     while($logSelect->fetch())
     {
-        echo '<li>'.$log.'hora'.$hora_log.'</li>';
+        echo "<li>$log<span style='color: rgba(0, 0, 0, 0.465); font-size: 14px;'> $hora_log</span></li>";
     }
 }
 
