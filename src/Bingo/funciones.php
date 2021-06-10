@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-
+namespace Daw\Bingo;
 function crearPartida($nombreJ1, $cartonesJ1, $imagenJ1, $nombreJ2, $cartonesJ2,$imagenJ2, $nombreJ3, $cartonesJ3, $imagenJ3,
 $nombreJ4, $cartonesJ4, $imagenJ4){
     $partida = new Bingo("$nombreJ1", $cartonesJ1, $imagenJ1, "$nombreJ2", $cartonesJ2,$imagenJ2, "$nombreJ3", $cartonesJ3, $imagenJ3,
@@ -13,7 +13,7 @@ function cantarLinea($id){
     include ('./conexionbd.php');
 
     $esteCartonHaCantadoLinea = FALSE;
-    $fichero = fopen("cantarlinea.txt", "rb+");
+    $fichero = fopen("./cantarlinea.txt", "rb+");
     $a = intval(fgets($fichero));
     fclose($fichero);
 
@@ -140,7 +140,7 @@ function cantarLineaEnBD($id){
     $insertLogLinea->fetch();
     $insertLogLinea->close();
 
-    $fichero = fopen("cantarlinea.txt", "ab+");
+    $fichero = fopen("./cantarlinea.txt", "ab+");
     fwrite($fichero, 1 . PHP_EOL);
     fclose($fichero);
 }
@@ -213,13 +213,13 @@ function reiniciarPartida(){
 
     include ('./conexionbd.php');
 
-    $ficheroCartones = fopen("cartones.txt", "w+");
+    $ficheroCartones = fopen("./cartones.txt", "w+");
     fclose($ficheroCartones);
 
-    $ficheroBolas = fopen("bolas.txt", "w+");
+    $ficheroBolas = fopen("./bolas.txt", "w+");
     fclose($ficheroBolas);
 
-    $ficherocantarlinea = fopen("cantarlinea.txt", "w+");
+    $ficherocantarlinea = fopen("./cantarlinea.txt", "w+");
     fclose($ficherocantarlinea);
 
     $truncateLog = $db->prepare("TRUNCATE `log`");

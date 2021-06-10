@@ -16,7 +16,7 @@ final class Carton {
         $contadorDeFgets = 0;
 
         //Abre el fichero para obtener los cartones que no están disponibles, los guarda en $cartonesSacados
-        $fichero = fopen(__DIR__ . "/cartones.txt", "rb+");
+        $fichero = fopen("./cartones.txt", "rb+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");
@@ -61,7 +61,7 @@ final class Carton {
         $idDelCarton = $cartonesDisponibles[$cogerUnCarton];
         $this->id = intval($idDelCarton);
 
-        $fichero = fopen("cartones.txt", "ab+");
+        $fichero = fopen("./cartones.txt", "ab+");
         fwrite($fichero, $idDelCarton . PHP_EOL);
         fclose($fichero);
 

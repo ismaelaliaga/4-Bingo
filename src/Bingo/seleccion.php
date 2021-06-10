@@ -1,3 +1,9 @@
+<?php
+
+namespace Daw\Bingo;
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

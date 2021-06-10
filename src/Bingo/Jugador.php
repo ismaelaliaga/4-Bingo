@@ -13,7 +13,8 @@ final class Jugador {
     private $carton3;
 
     public function __construct($nombre, $numeroCartones,$imagen){
-        include(__DIR__ . './conexionbd.php');
+        
+        include ('conexionbd.php');
 
         $this->nombre = $nombre;
         $this->imagen = $imagen;

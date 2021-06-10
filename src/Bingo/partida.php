@@ -2,8 +2,8 @@
 declare(strict_types=1);
 namespace Daw\Bingo;
 require_once ('./Bombo.php');
-include_once('funciones.php');
-include('./conexionbd.php');
+include_once ('funciones.php');
+include ('./conexionbd.php');
 $bombo = new Bombo;
 
 $a = $bombo->sacarBola();

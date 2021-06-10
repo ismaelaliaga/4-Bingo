@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 namespace Daw\Bingo;
 require_once ('Jugador.php');
 
@@ -39,9 +38,5 @@ final class Bingo {
     public function getJugadores(){
         $array = array($this->jugador1,$this->jugador2,$this->jugador3,$this->jugador4);
         return $array;
-    }
-
-    public function comenzarPartida(){
-        
     }
 }

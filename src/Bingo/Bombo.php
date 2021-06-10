@@ -14,7 +14,7 @@ final class Bombo {
         // $bolasDisponibles = array();
         $contadorDeFgets = 0;
 
-        $fichero = fopen(__DIR__ . "/bolas.txt", "rb+");
+        $fichero = fopen("./bolas.txt", "rb+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");
@@ -55,7 +55,7 @@ final class Bombo {
 
         $cogerLaBola = $this->bolas[$girarElBombo];
 
-        $fichero = fopen("bolas.txt", "ab+");
+        $fichero = fopen("./bolas.txt", "ab+");
         fwrite($fichero, $this->bolas[$girarElBombo] . PHP_EOL);
         fclose($fichero);
  
