@@ -230,7 +230,7 @@ if(isset($_POST['Jugar']))
  require_once ('funciones.php');
  
  $partidaComenzada = crearpartida($nombreJ1, $cartonJ1,$imagenJ1, $nombreJ2, $cartonJ2, $imagenJ2, $nombreJ3, $cartonJ3, $imagenJ3, $nombreJ4, $cartonJ4,$imagenJ4);
- header("location:./partida.php");//redireccionamos a partida.php
+ echo "<script>self.location.href='partida.php'</script>";
 
   }else
   {
@@ -286,13 +286,11 @@ require_once ('Carton.php');
 require_once ('funciones.php');
 
 $partidaComenzada = crearpartida($nombreJ1, $cartonJ1,$imagenJ1, $nombreJ2, $cartonJ2, $imagenJ2, $nombreJ3, $cartonJ3, $imagenJ3, $nombreJ4, $cartonJ4,$imagenJ4);
+echo "<script>self.location.href='partida.php'</script>";
 
-header("location:./partida.php");//redireccionamos a partida.php
 
     }  
   }
 }
-
-
-
 ?>
+
