@@ -69,9 +69,10 @@ $jugador4=obtenerJugador($db, 4);
                     <?php imprimirLog();?>
             </ul>
 =======
-                <ul>
-                    <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
-                </ul>
+            <ul>
+                <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
+                    <?php imprimirLog();?>
+            </ul>
 >>>>>>> e648603c1dfc9376ecd3d77e3a8b728dda8ff1e6
             </section>
         </div>
