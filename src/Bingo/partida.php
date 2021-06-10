@@ -54,7 +54,7 @@ $jugador4=obtenerJugador($db, 4);
     </header>
     <main>
         <section id="tablero">
-            <span>Tirada <?php echo $tirada; ?></span>
+            <span>Tirada <?php ContadorTiradas(); ?></span>
             <div class="container">
                 <h2 class="front">
                     <?php

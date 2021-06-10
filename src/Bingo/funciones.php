@@ -263,6 +263,12 @@ function finalizarPartida($db){
 }
 
 function reiniciarPartida($db){
+    //guardar id de los jugadores
+    $jugadorestxt=fopen("./idJugadores.txt","c+");
+    //guardar los estados de los cartones
+    $jugadorestxt=fopen("./cartonesReiniciar.txt","c+");
+
+
     $ficheroCartones = fopen("./cartones.txt", "w+");
     fclose($ficheroCartones);
 
@@ -279,22 +285,30 @@ function reiniciarPartida($db){
     $jugadores->execute();
     $jugadores->bind_result($idJugador);
     while ($jugadores->fetch()) {
-        echo "$idJugador<br>";
-        $estadoInicial = $db->prepare("SELECT `estado_default` 
-        FROM `cartones` `c` 
-        INNER JOIN `partida` `p` ON `c`.`id_carton`=`p`.`id_carton` 
-        INNER JOIN `jugadores` `j` ON `j`.`id_jugador`=`p`.`id_jugador` 
-        WHERE `j`.`id_jugador`= ?;");
-        $estadoInicial->bind_param('i', $idJugador);
-        $estadoInicial->execute();
-        $estadoInicial->bind_result($estado_default);
-        while ($estadoInicial->fetch()) {
-            $actualizarEstado = $db->prepare("UPDATE `partida` SET `estado`=$estado_default");
-            $actualizarEstado->execute();
-        }
-    }
 
-}
+        fwrite($jugadorestxt,$idJugador.PHP_EOL);
+    }
+    fseek($jugadorestxt,0);
+    while($ids=fgets($jugadorestxt))
+    {
+        $ids=trim($ids);
+        $ids=intval($ids);
+
+    $estadoInicial = $db->prepare("SELECT `estado_default` 
+    FROM `cartones` `c` 
+    INNER JOIN `partida` `p` ON `c`.`id_carton`=`p`.`id_carton` 
+    INNER JOIN `jugadores` `j` ON `j`.`id_jugador`=`p`.`id_jugador` 
+    WHERE `j`.`id_jugador`= $ids ;");
+    $estadoInicial->execute();
+    $estadoInicial->bind_result($estado_default);
+    // $estadoInicial->bind_param('i', $ids);
+    while($estadoInicial->fetch())
+    {
+    $actualizarEstado = $db->prepare("UPDATE `partida` SET `estado`='$estado_default' ;");
+    $actualizarEstado->execute();
+     }
+    }
+ }
 
 function imprimirLog($db)
 {
@@ -372,4 +386,16 @@ function imprimirJugador($nombre, $imagen, $id, $cartonesEstado){
         }
     }
     echo "</section></article>";
+}
+
+function ContadorTiradas()
+{
+    include ('./conexionbd.php');
+    $contador=0;
+    $archivo=fopen("bolas.txt","rb+");
+    while(fgets($archivo))
+    {
+         $contador++;
+    }
+    echo $contador;
 }

@@ -58,7 +58,7 @@ body{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    height: 50vh;
+    height: 45vh;
     width: 100vw;
     z-index: 2;
 }
