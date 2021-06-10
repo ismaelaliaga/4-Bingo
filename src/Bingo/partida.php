@@ -39,7 +39,7 @@
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/0.jpg"/>
                 <h2 class="nombreJugador">Antonio</h2>
-                <section class="cartonesContenedor">
+                <section class="cartonesContenedor" id="1">
                     <article class="minicartonContenedor">
                         <h3>5/15</h3>
                         <table class="minicarton">
@@ -159,7 +159,7 @@
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/1.jpg"/>
                 <h2 class="nombreJugador">Felipe</h2>
-                <section class="cartonesContenedor">
+                <section class="cartonesContenedor" id="2">
                     <article class="minicartonContenedor">
                         <h3>5/15</h3>
                         <table class="minicarton">
@@ -281,7 +281,7 @@
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/2.jpg"/>
                 <h2 class="nombreJugador">Gabriel</h2>
-                <section class="cartonesContenedor">
+                <section class="cartonesContenedor" id="3">
                     <article class="minicartonContenedor">
                         <h3>5/15</h3>
                         <table class="minicarton">
@@ -401,12 +401,135 @@
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/3.jpg"/>
                 <h2 class="nombreJugador">Antonio</h2>
-                <div class="cartonesContenedor">
+                <section class="cartonesContenedor" id="4">
 
-                </div>
+                </section>
+            </article>
+        </section>
+        <section id="cartonesModalContenedor">
+            <article class="cartonesJugadorModal" id="-1">
+                <i class='fas fa-times-circle botonCerrarCartones'></i>
+                <table class="cartonModal">
+                    <tr>
+                        <td class="celdaOcupada">66</td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada tachado">6</td>
+                        <td class="celdaOcupada">6</td>
+                        <td class="celdaVacia"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                </table>
+
+                <table class="cartonModal">
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                </table>
+
+
+                <table class="cartonModal">
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                        <td class="celdaOcupada"></td>
+                    </tr>
+                </table>
             </article>
         </section>
     </main>
     <footer></footer>
 </body>
+<script type="text/javascript" src="../../js/partida_comportamiento.js"></script>
 </html>
