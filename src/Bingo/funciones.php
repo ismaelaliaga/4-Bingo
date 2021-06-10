@@ -150,6 +150,16 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
     include ('./conexionbd.php');
 
+    $selectNombreJugador = $db->prepare("SELECT `nombre_jugador` FROM `jugadores` `j`
+    INNER JOIN `partida` `p` ON `j`.`id_jugador` = `p`.`id_jugador`
+    INNER JOIN `cartones` `c` ON `c`.`id_carton` = `p`.`id_carton`
+    WHERE `p`.`id_carton` = ?"); 
+    $selectNombreJugador->bind_param('i', $idCarton); 
+    $selectNombreJugador->execute();
+    $selectNombreJugador->bind_result($nombreJugador);
+    $selectNombreJugador->fetch();
+    $selectNombreJugador->close();
+
     $selectEstado = $db->prepare("SELECT `p`.`estado`, `c`.`numeros` 
     FROM `partida` `p`
     INNER JOIN `cartones` `c` ON `p`.`id_carton` = `c`.`id_carton`
@@ -185,7 +195,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
         $insertLogTachado = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
         $insertLogTachado->bind_param('s', $string); 
-        $string = "El número $numeroBombo se encuentra en el cartón ".$idCarton;
+        $string = "El jugador $nombreJugador tacha el número <b>$numeroBombo</b> en el cartón $idCarton";
         $insertLogTachado->execute();
         $insertLogTachado->fetch();
         $insertLogTachado->close();
@@ -196,15 +206,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
         $updateEstadoCarton->close();
 
     }
-    else{
-
-        $insertLogNumNoCarton = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
-        $insertLogNumNoCarton->bind_param('s', $string); 
-        $string = "El número $numeroBombo no se encuentra en el cartón {$idCarton}";
-        $insertLogNumNoCarton->execute();
-        $insertLogNumNoCarton->fetch();
-        $insertLogNumNoCarton->close();
-    }
+    
 }
 
 function reiniciarPartida(){
@@ -217,6 +219,9 @@ function reiniciarPartida(){
     $ficheroBolas = fopen("bolas.txt", "w+");
     fclose($ficheroBolas);
 
+    $ficherocantarlinea = fopen("cantarlinea.txt", "w+");
+    fclose($ficherocantarlinea);
+
     $truncateLog = $db->prepare("TRUNCATE `log`");
     $truncateLog->execute();
     $truncateLog->close();
@@ -227,11 +232,15 @@ function reiniciarPartida(){
 
     $deleteJugadores = $db->prepare("DELETE FROM `jugadores` WHERE `jugadores`.`id_jugador` = ?");
     $deleteJugadores->bind_param('i', $id); 
-    for($i=1;$i>4;$i++){
+    for($i=1;$i<=4;$i++){
         $id=$i;
         $deleteJugadores->execute();
     }
     $deleteJugadores->close();
+
+    $alterAutoIncrement = $db->prepare("ALTER TABLE `jugadores` AUTO_INCREMENT = 1");
+    $alterAutoIncrement->execute();
+    $alterAutoIncrement->close();
 
     
 }
