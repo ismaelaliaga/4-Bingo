@@ -207,7 +207,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
         $insertLogTachado = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
         $insertLogTachado->bind_param('s', $string); 
-        $string = "$nombreJugador tacha el <b>$numeroBombo</b> en el cartón $idCarton";
+        $string = "<b>$nombreJugador</b> tacha el <b>$numeroBombo</b> en el cartón $idCarton";
         $insertLogTachado->execute();
         $insertLogTachado->fetch();
         $insertLogTachado->close();

@@ -69,7 +69,7 @@ body{
 .jugadoresBottom{
     align-items: flex-end;
     bottom: 0px;
-    height: max-content;
+    height: 0px;
 }
 .jugadorContenedor{
     background-color: #24303c;
