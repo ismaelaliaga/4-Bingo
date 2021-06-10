@@ -15,7 +15,7 @@ final class Carton {
         $contadorDeFgets = 0;
 
         //Abre el fichero para obtener los cartones que no están disponibles, los guarda en $cartonesSacados
-        $fichero = fopen("cartones.txt", "w+");
+        $fichero = fopen("cartones.txt", "rb+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");
