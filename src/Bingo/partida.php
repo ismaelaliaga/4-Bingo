@@ -16,6 +16,7 @@ if (isset($_POST['sacarBola'])) {
         buscarNumeroEnElCarton($bola, $numeros);
         cantarLinea($numeros);
     }
+    escribirBolaLog($bola);
 }
 $jugador1=obtenerJugador($db, 1);
 $jugador2=obtenerJugador($db, 2);

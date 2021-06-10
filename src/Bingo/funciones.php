@@ -145,6 +145,18 @@ function cantarLineaEnBD($id){
     fclose($fichero);
 }
 
+function escribirBolaLog($bola){
+
+    include ('./conexionbd.php');
+    $insertLogBolaSacada = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
+    $insertLogBolaSacada->bind_param('s', $string); 
+    $string = "El bombo ha sacado la bola $bola";
+    $insertLogBolaSacada->execute();
+    $insertLogBolaSacada->fetch();
+    $insertLogBolaSacada->close();
+
+}
+
 
 function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
