@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+namespace Daw\Bingo;
+
 final class Carton {
     private array $carton;
     private int $id;
     const CARTONES = 60;
-
 
     public function __construct(){
         include ('conexionbd.php');
@@ -15,7 +16,7 @@ final class Carton {
         $contadorDeFgets = 0;
 
         //Abre el fichero para obtener los cartones que no están disponibles, los guarda en $cartonesSacados
-        $fichero = fopen("cartones.txt", "rb+");
+        $fichero = fopen(__DIR__ . "/cartones.txt", "rb+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");
