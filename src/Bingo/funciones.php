@@ -245,12 +245,16 @@ function reiniciarPartida(){
     
 }
 
-function obtenerLog($db)
+function imprimirLog($db)
 {
 
-    $logSelect = $db->prepare("SELECT `log` FROM `log`;"); 
+    $logSelect = $db->prepare("SELECT `log`,`hora_log` FROM `log`;"); 
     $logSelect->execute();
-    return $logSelect;
+    $logSelect->bind_result($log,$hora_log);
+    while($logSelect->fetch())
+    {
+        echo '<li>'.$log.'hora'.$hora_log.'</li>';
+    }
 }
 
 function obtenerEstadoCarton($db, $idJugador)

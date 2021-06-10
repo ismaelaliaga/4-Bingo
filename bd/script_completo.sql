@@ -4,7 +4,7 @@ USE `bingo`;
 CREATE TABLE `cartones`(`id_carton` TINYINT PRIMARY KEY AUTO_INCREMENT, `numeros` VARCHAR(150) NOT NULL, `estado_default` VARCHAR(150) NOT NULL);
 CREATE TABLE `jugadores`(`id_jugador` TINYINT PRIMARY KEY AUTO_INCREMENT, `nombre_jugador` VARCHAR(50) NOT NULL , `imagen_jugador` LONGTEXT NOT NULL);
 CREATE TABLE `partida`(`id_jugador` TINYINT ,`id_carton` TINYINT , `estado` VARCHAR(150) NOT NULL, FOREIGN KEY (`id_carton`) REFERENCES `cartones`(`id_carton`), FOREIGN KEY (`id_jugador`) REFERENCES `jugadores`(`id_jugador`));
-CREATE TABLE `log`(`log` VARCHAR (150));
+CREATE TABLE `log`(`log` VARCHAR (150), `hora_log` time default now());
 INSERT INTO `cartones`(`id_carton`, `numeros`, `estado_default`) VALUES
 (1, '5, 10, NULL, NULL, 44, NULL, 62, 70, NULL, NULL, 16, NULL, 37, 47, NULL, NULL, 76, 81, 7, NULL, 21, 39, NULL, 58, NULL, NULL, 89', '0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 2, 0, 0, 2, 2, 0, 0, 0, 2, 0, 0, 2, 0, 2, 2, 0'),
 (2, '1, NULL, 20, NULL, 45, 54, NULL, NULL, 83, 3, 14, NULL, 35, NULL, NULL, 66, 73, NULL, NULL, NULL, 22, 36, NULL, 56, NULL, 77, 87', '0, 2, 0, 2, 0, 0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0, 0, 2, 2, 2, 0, 0, 2, 0, 2, 0, 0'),

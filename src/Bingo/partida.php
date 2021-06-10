@@ -47,7 +47,10 @@ $jugador4=obtenerJugador($db, 4);
     <main>
         <section id="tablero">
             <span>Tirada <?php echo $tirada; ?></span>
-            <h2 id="bola">
+            <div class="container">
+                <h2 class="front">5</h2>
+                <h2 class="back"><img  class="logo" src="../../img/logot.png"></h2>
+            </div>
                 <?php
                     if (isset($bola)) {
                         echo $bola;
@@ -62,6 +65,7 @@ $jugador4=obtenerJugador($db, 4);
             <section id="ventanaLog">
             <ul>
                 <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
+                    <?php imprimirLog();?>
             </ul>
             </section>
         </div>
