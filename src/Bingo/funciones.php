@@ -230,9 +230,16 @@ function reiniciarPartida(){
     $truncatePartida->execute();
     $truncatePartida->close();
 
+
+    $numdejugadores = $db->prepare("SELECT COUNT(*) FROM `jugadores`");
+    $numdejugadores->execute();
+    $numdejugadores->bind_result($idJug);
+    $numdejugadores->fetch();
+    $numdejugadores->close();
+
     $deleteJugadores = $db->prepare("DELETE FROM `jugadores` WHERE `jugadores`.`id_jugador` = ?");
     $deleteJugadores->bind_param('i', $id); 
-    for($i=1;$i<=4;$i++){
+    for($i=1;$i<=$idJug;$i++){
         $id=$i;
         $deleteJugadores->execute();
     }
@@ -241,7 +248,7 @@ function reiniciarPartida(){
     $alterAutoIncrement = $db->prepare("ALTER TABLE `jugadores` AUTO_INCREMENT = 1");
     $alterAutoIncrement->execute();
     $alterAutoIncrement->close();
-
+    
     
 }
 
