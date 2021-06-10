@@ -317,6 +317,7 @@ body{
     .jugadorContenedor{
         width: 90vw;
     }
+<<<<<<< HEAD
 }
 
 /*animación bola*/
@@ -383,3 +384,6 @@ body{
     height: 290px;
     width: 300px;
   }
+=======
+}
+>>>>>>> e648603c1dfc9376ecd3d77e3a8b728dda8ff1e6
