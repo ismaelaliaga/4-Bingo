@@ -39,9 +39,9 @@ error_reporting(E_ALL);
       <ul>
       <li class="tittle" > <input class="botones tittle" name="Jugar" type="submit" value="Jugar"></li>
       </ul>
-      <ul>
+      <!-- <ul>
         <li>  <li class="tittle" > <a class="botones tittle" href="./partida.php?continuar=1">Continuar partida</a></li></li>
-      </ul>
+      </ul> -->
       <ul>
         <li><a  class="salir" href="./index.html">Salir</a></li>
       </ul>
