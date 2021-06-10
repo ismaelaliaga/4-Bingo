@@ -235,3 +235,11 @@ function reiniciarPartida(){
 
     
 }
+
+function obtenerLog($db)
+{
+
+    $logSelect = $db->prepare("SELECT `log` FROM `log`;"); 
+    $logSelect->execute();
+    return $logSelect;
+}
