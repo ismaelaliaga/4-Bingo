@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-
+namespace Daw\Bingo;
 function crearPartida($nombreJ1, $cartonesJ1, $imagenJ1, $nombreJ2, $cartonesJ2,$imagenJ2, $nombreJ3, $cartonesJ3, $imagenJ3,
 $nombreJ4, $cartonesJ4, $imagenJ4){
     $partida = new Bingo("$nombreJ1", $cartonesJ1, $imagenJ1, "$nombreJ2", $cartonesJ2,$imagenJ2, "$nombreJ3", $cartonesJ3, $imagenJ3,
@@ -13,7 +13,7 @@ function cantarLinea($id){
     include ('./conexionbd.php');
 
     $esteCartonHaCantadoLinea = FALSE;
-    $fichero = fopen("cantarlinea.txt", "rb+");
+    $fichero = fopen("./cantarlinea.txt", "rb+");
     $a = intval(fgets($fichero));
     fclose($fichero);
 
@@ -140,7 +140,7 @@ function cantarLineaEnBD($id){
     $insertLogLinea->fetch();
     $insertLogLinea->close();
 
-    $fichero = fopen("cantarlinea.txt", "ab+");
+    $fichero = fopen("./cantarlinea.txt", "ab+");
     fwrite($fichero, 1 . PHP_EOL);
     fclose($fichero);
 }
@@ -213,13 +213,13 @@ function reiniciarPartida(){
 
     include ('./conexionbd.php');
 
-    $ficheroCartones = fopen("cartones.txt", "w+");
+    $ficheroCartones = fopen("./cartones.txt", "w+");
     fclose($ficheroCartones);
 
-    $ficheroBolas = fopen("bolas.txt", "w+");
+    $ficheroBolas = fopen("./bolas.txt", "w+");
     fclose($ficheroBolas);
 
-    $ficherocantarlinea = fopen("cantarlinea.txt", "w+");
+    $ficherocantarlinea = fopen("./cantarlinea.txt", "w+");
     fclose($ficherocantarlinea);
 
     $truncateLog = $db->prepare("TRUNCATE `log`");
@@ -256,7 +256,7 @@ function obtenerLog($db)
 function obtenerEstadoCarton($db, $idJugador)
 {
 
-    $cartonesSelect = $db->prepare("SELECT `id_carton`, `estado` FROM `partida` where `id_jugador` = $idJugador  ;"); 
+    $cartonesSelect = $db->prepare("SELECT `estado_default` FROM `partida` where `id_jugador` = $idJugador  ;"); 
     $cartonesSelect->execute();
     return $cartonesSelect;
 }
@@ -264,7 +264,7 @@ function obtenerEstadoCarton($db, $idJugador)
 function obtenerEstructuraCarton($db, $idJugador)
 {
 
-    $estructuraSelect = $db->prepare("SELECT `id_carton`, `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
+    $estructuraSelect = $db->prepare("SELECT `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
     $estructuraSelect->execute();
     return $estructuraSelect;
 }
@@ -279,38 +279,36 @@ function obtenerJugador($db, $idJugador){
     return false;
 }
 
-function imprimirJugador($nombre, $imagen, $id, $cartonesEstado){
+function imprimirJugador($nombre, $imagen, $cartonesEstado){
     echo "
         <article class='jugadorContenedor'>
                 <img class='imgJugador' src='$imagen'/>
                 <h2 class='nombreJugador'>$nombre</h2>
-                <section class='cartonesContenedor' id='$id'>
+                <section class='cartonesContenedor' id='1'>
     ";
+    $cartonesEstado->store_result();
     $cartonesEstado->bind_result($idCarton, $estado);
-    while ($cartonesEstado->fetch()) {
+    for ($i=0; $i < $cartonesEstado->num_rows-1; $i++) { 
         $tachados=0;
         echo "<article class='minicartonContenedor'>
-        <table class='minicarton'>
-            <tr>";
-        $estadoArray=explode(", ", $estado);
-        for ($x=0; $x < 27; $x++) { 
-            if ($estadoArray[$x]==1) {
+                <table class='minicarton'>
+                    <tr>";
+        while ($cartonesEstado->fetch()) {
+            $estadoArray=explode(", ", $estado);
+            if ($estadoArray[$i]==1) {
                 $celda="<i class='fas fa-circle'></i>";
                 $claseCelda="";
                 $tachados++;
             }
-            if ($estadoArray[$x]==2) {
+            if ($estadoArray[$i]==2) {
                 $celda="";
                 $claseCelda="nulo";
-            }if ($estadoArray[$x]==0) {
-                $celda="";
-                $claseCelda="";
             }
             echo "<td class=$claseCelda>$celda</td>";
-            if ($x==8 || $x==17) {
+            if ($i==8 || $i==17) {
                 echo "</tr><tr>";
             }
-            if ($x==26) {
+            if ($i==26) {
                 echo "</tr></table>
                     <h3>$tachados/15</h3>
                 </article>";
