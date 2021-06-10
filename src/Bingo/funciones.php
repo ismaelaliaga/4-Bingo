@@ -252,3 +252,19 @@ function obtenerLog($db)
     $logSelect->execute();
     return $logSelect;
 }
+
+function obtenerEstadoCarton($db, $idJugador)
+{
+
+    $cartonesSelect = $db->prepare("SELECT `estado_default` FROM `partida` where `id_jugador` = $idJugador  ;"); 
+    $cartonesSelect->execute();
+    return $cartonesSelect;
+}
+
+function obtenerEstructuraCarton($db, $idJugador)
+{
+
+    $estructuraSelect = $db->prepare("SELECT `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
+    $estructuraSelect->execute();
+    return $estructuraSelect;
+}

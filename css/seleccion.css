@@ -80,7 +80,7 @@
  .tittle
  {
    color: white;
-   padding: 1em;
+   padding: 0.5em;
    font-size: x-large;
  }
 
@@ -161,8 +161,8 @@
  
     background-color: white;
     border-radius: 50%;
-    width:220px;
-    height:220px;
+    width:200px;
+    height:200px;
     background-repeat: no-repeat;
     object-position: center;
     object-fit: cover;
@@ -240,17 +240,16 @@
     cursor: pointer;
   }
 
-  @media only screen and (max-width : 900px) 
+  @media only screen and (max-width : 720px) 
 {
 
   .form-register {
-    width: 350px;
+    width: 85%;
     background: #24303c;
-    padding: 30px;
-    margin: 5%;
-    margin-top: 0px;
-    margin-right: 50px;
-    border-radius: 4px;
+    /*margin: 5%;
+     margin-top: 0px;
+    margin-right: 50px; */
+    border-radius: 3%;
     font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px #000;
@@ -259,6 +258,7 @@
     align-content: space-around;
     justify-content: center;
     align-items: center;
+    margin-bottom:25px;
 
     
 
@@ -289,7 +289,6 @@
   .cuerpo
   {
     height:auto;
-    margin-bottom:20%;
   }
 
   .main
@@ -710,7 +709,7 @@
   {
     background-color: yellowgreen;
     color: white;
-    font-size: 115px;
+    font-size: 80px;
     align-content: center;
     border-radius: 5%;
     margin-top: 33px;
