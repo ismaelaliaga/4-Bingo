@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
+namespace Daw\Bingo;
+
+
+
 final class Bombo {
     private array $bolas;
 
     public function __construct(){
-
         //$bolasDisponibles no se utiliza??
-        $bolasDisponibles = array();
+        // $bolasDisponibles = array();
         $contadorDeFgets = 0;
 
-        $fichero = fopen("bolas.txt", "rb+");
+        $fichero = fopen(__DIR__ . "/bolas.txt", "rb+");
         while($a = intval(fgets($fichero))){
             if($contadorDeFgets == 0){
                 $string = trim("$a");

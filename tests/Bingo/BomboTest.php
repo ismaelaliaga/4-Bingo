@@ -2,27 +2,108 @@
 
 declare(strict_types=1);
 
-
 namespace Daw\Tests\Bingo;
 
 use Daw\Bingo\Bombo;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversDefaultClass \Daw\Bingo\Bombo
+ */
 class BomboTest extends TestCase{
 
     /**
-    * @covers ::comprobarnombre()
+    * @covers ::sacarBola()
     */
-
-    public function testNoSeCreaElBombo(){
+    public function testElMetodoSacarBolaDevuelveInt(){
         //Given
-        $numeros = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60";
+        $sut = new Bombo;
         
         //When
-        $bombo = new Bombo($numeros);
+        $espero = $sut->sacarBola();
+
         //Then
-        $this->assertNotTrue($bombo);
+        $this->assertIsInt($espero);
     }
 
+    // /**
+    // * @covers ::sacarBola()
+    // */
+    // public function testElMetodoSacarBolaEscribeLaBolaSacadaEnElTxtCorrespondiente(){
+    //     //Given
+    //     $sut = new Bombo;
+    //     $bola = $sut->sacarBola();
+    //     $bola = "$bola";
+    //     $fichero = fopen(__DIR__ . "/bolas.txt", "rb+");
+    //     fwrite($fichero, $bola);
+    //     fclose($fichero);
+
+    //     $fichero = fopen(__DIR__ . "/bolas.txt", "rb+");
+
+    //     //When
+    //     $espero = fgets($fichero);
+    //     fclose($fichero);
+
+    //     //Then
+    //     $this->assertSame($bola, $espero);
+    // }
+
+    /**
+    * @covers ::construct()
+    */
+    public function testLosObjetosDeLaClaseBomboTienenElAtributoCorrecto(){
+        //Given
+        $sut = new Bombo;
+        
+        //When
+        $espero = "bolas";
+
+        //Then
+        $this->assertObjectHasAttribute($espero, $sut);
+    }
+
+    /**
+    * @covers ::sacarBola()
+    */
+    public function testElNúmeroMáximoQueDevuelveSacarBolaEs90(){
+        //Given
+        $sut = new Bombo;
+        $bola = $sut->sacarBola();
+
+        //When
+        $espero = 90;
+
+        //Then
+        $this->assertLessThanOrEqual($espero, $bola);
+    }
+
+    /**
+    * @covers ::sacarBola()
+    */
+    public function testElNúmeroMínimoQueDevuelveSacarBolaEs0(){
+        //Given
+        $sut = new Bombo;
+        $bola = $sut->sacarBola();
+
+        //When
+        $espero = 0;
+
+        //Then
+        $this->assertGreaterThanOrEqual($espero, $bola);
+    }
+
+    /**
+    * @covers ::construct()
+    */
+    public function testElConstructCreaUnObjeto(){
+        //Given 
+        $sut = new Bombo;
+
+        //When
+        $objeto = $sut;
+
+        //Then
+        $this->assertIsObject($objeto);
+    }
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+namespace Daw\Bingo;
 require_once ('Carton.php');
 
 final class Jugador {
@@ -12,7 +13,7 @@ final class Jugador {
     private $carton3;
 
     public function __construct($nombre, $numeroCartones,$imagen){
-         include ('./conexionbd.php');
+        include(__DIR__ . './conexionbd.php');
 
         $this->nombre = $nombre;
         $this->imagen = $imagen;
