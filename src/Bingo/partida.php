@@ -1,3 +1,25 @@
+<?php
+declare(strict_types=1);
+namespace Daw\Bingo;
+require_once ('./Bombo.php');
+include_once('funciones.php');
+include('./conexionbd.php');
+$bombo = new Bombo;
+
+$a = $bombo->sacarBola();
+
+$sentencia = $db->prepare("SELECT `id_carton` FROM `partida`");
+$sentencia->execute();
+$sentencia->bind_result($numeros);
+while($sentencia->fetch()){
+    buscarNumeroEnElCarton($a, $numeros);
+    cantarLinea($numeros);
+}
+$jugador1=obtenerJugador($db, 1);
+$jugador2=obtenerJugador($db, 2);
+$jugador3=obtenerJugador($db, 3);
+$jugador4=obtenerJugador($db, 4);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,367 +58,11 @@
             </section>
         </div>
         <section class="jugadores jugadoresTop">
-            <article class="jugadorContenedor">
-                <img class="imgJugador" src="../../img/jugadores/0.jpg"/>
-                <h2 class="nombreJugador">Antonio</h2>
-                <section class="cartonesContenedor" id="1">
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                </section>
-            </article>
-            <article class="jugadorContenedor">
-                <img class="imgJugador" src="../../img/jugadores/1.jpg"/>
-                <h2 class="nombreJugador">Felipe</h2>
-                <section class="cartonesContenedor" id="2">
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                </section>
-            </article>
+            
         </section>
         <section class="jugadores jugadoresBottom">
-            <article class="jugadorContenedor">
-                <img class="imgJugador" src="../../img/jugadores/2.jpg"/>
-                <h2 class="nombreJugador">Gabriel</h2>
-                <section class="cartonesContenedor" id="3">
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                    <article class="minicartonContenedor">
-                        <h3>5/15</h3>
-                        <table class="minicarton">
-                            <tr>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td class="nulo"></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td class="nulo"></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td><i class="fas fa-circle"></i></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td></td>
-                                <td class="nulo"></td>
-                                <td></td>
-                                <td><i class="fas fa-circle"></i></td>
-                                <td class="nulo"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="nulo"></td>
-                                <td></td>
-                                <td></td>
-                                <td class="nulo"></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </article>
-                </section>
+
+        </section>
             </article>
             <article class="jugadorContenedor">
                 <img class="imgJugador" src="../../img/jugadores/3.jpg"/>
@@ -433,8 +99,8 @@
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
                     </tr>
-                    
-                    
+
+
                     <tr>
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
@@ -472,8 +138,8 @@
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
                     </tr>
-                    
-                    
+
+
                     <tr>
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
@@ -512,8 +178,8 @@
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
                     </tr>
-                    
-                    
+
+
                     <tr>
                         <td class="celdaOcupada"></td>
                         <td class="celdaOcupada"></td>
@@ -529,7 +195,6 @@
             </article>
         </section>
     </main>
-    <footer></footer>
 </body>
 <script type="text/javascript" src="../../js/partida_comportamiento.js"></script>
 </html>

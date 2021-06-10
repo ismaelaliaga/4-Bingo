@@ -268,3 +268,52 @@ function obtenerEstructuraCarton($db, $idJugador)
     $estructuraSelect->execute();
     return $estructuraSelect;
 }
+
+function obtenerJugador($db, $idJugador){
+    $jugadorSelect = $db->prepare("SELECT * FROM `jugadores` WHERE `id_jugador`= $idJugador;");
+    $jugadorSelect->execute();
+    $jugadorSelect->store_result();
+    if($jugadorSelect->num_rows>0){
+        return $jugadorSelect;
+    }
+    return false;
+}
+
+function imprimirJugador($nombre, $imagen, $cartonesEstado){
+    echo "
+        <article class='jugadorContenedor'>
+                <img class='imgJugador' src='$imagen'/>
+                <h2 class='nombreJugador'>$nombre</h2>
+                <section class='cartonesContenedor' id='1'>
+    ";
+    $cartonesEstado->store_result();
+    $cartonesEstado->bind_result($idCarton, $estado);
+    for ($i=0; $i < $cartonesEstado->num_rows-1; $i++) { 
+        $tachados=0;
+        echo "<article class='minicartonContenedor'>
+                <table class='minicarton'>
+                    <tr>";
+        while ($cartonesEstado->fetch()) {
+            $estadoArray=explode(", ", $estado);
+            if ($estadoArray[$i]==1) {
+                $celda="<i class='fas fa-circle'></i>";
+                $claseCelda="";
+                $tachados++;
+            }
+            if ($estadoArray[$i]==2) {
+                $celda="";
+                $claseCelda="nulo";
+            }
+            echo "<td class=$claseCelda>$celda</td>";
+            if ($i==8 || $i==17) {
+                echo "</tr><tr>";
+            }
+            if ($i==26) {
+                echo "</tr></table>
+                    <h3>$tachados/15</h3>
+                </article>";
+            }
+        }
+    }
+    echo "</section></article>";
+}

@@ -162,6 +162,7 @@ body{
 }
 .minicartonContenedor{
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     width: inherit;
@@ -212,7 +213,7 @@ body{
 }
 .cartonModal
 {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     background-position: center;
     background-image: url('../img/logot.png'),linear-gradient(to right, #38a7ef, #868ddf);
     background-size: cover;
