@@ -324,7 +324,7 @@ body{
 
 .front, .back, .container {
     width: 320px;
-    height: 480px;
+    height: 400px;
   
   }
   .front, .back {
@@ -343,7 +343,7 @@ body{
     height: 300px;
     border-radius: 50%;
     border: 2px solid black;
-    margin: 50px;
+    margin: 10px;
     text-align: center;
     font-size: 200px;
     font-weight: normal;
@@ -360,7 +360,7 @@ body{
     height: 300px;
     border-radius: 50%;
     border: 2px solid black;
-    margin: 50px;
+    margin: 10px;
     text-align: center;
     font-size: 200px;
     font-weight: normal;

@@ -48,14 +48,15 @@ $jugador4=obtenerJugador($db, 4);
         <section id="tablero">
             <span>Tirada <?php echo $tirada; ?></span>
             <div class="container">
-                <h2 class="front">5</h2>
+                <h2 class="front">
+                    <?php
+                        if (isset($bola)) {
+                            echo $bola;
+                        }
+                    ?>
+                </h2>
                 <h2 class="back"><img  class="logo" src="../../img/logot.png"></h2>
             </div>
-                <?php
-                    if (isset($bola)) {
-                        echo $bola;
-                    }
-                ?>
             </h2>
             <form method="post">
                 <button id="sacarBolaBoton" name="sacarBola">Sacar bola</button>
@@ -65,7 +66,7 @@ $jugador4=obtenerJugador($db, 4);
             <section id="ventanaLog">
             <ul>
                 <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
-                    <?php imprimirLog();?>
+                    <?php imprimirLog($db);?>
             </ul>
             </section>
         </div>
