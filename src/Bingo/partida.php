@@ -16,6 +16,7 @@ if (isset($_POST['sacarBola'])) {
         buscarNumeroEnElCarton($bola, $numeros);
         cantarLinea($numeros);
     }
+    escribirBolaLog($bola);
 }
 if (isset($_POST['finalizarBoton'])) {
     reiniciarPartida();
