@@ -51,7 +51,9 @@ if(isset($_POST['Jugar']))
  require_once ('funciones.php');
  
  $partidaComenzada = crearpartida($nombreJ1, $cartonJ1,$imagenJ1, $nombreJ2, $cartonJ2, $imagenJ2, $nombreJ3, $cartonJ3, $imagenJ3, $nombreJ4, $cartonJ4,$imagenJ4);
-  }else
+ header("location: partida.php");//redireccionamos a partida.php
+  
+}else
   {
   if($_POST['nombres']==$_POST['nombres2'] || $_POST['nombres3']==$_POST['nombres4'] ||$_POST['nombres']==$_POST['nombres3'] ||$_POST['nombres'] == $_POST['nombres4'] || $_POST['nombres2'] == $_POST['nombres3'] || $_POST['nombres3'] == $_POST['nombres4'])
   {
@@ -109,5 +111,5 @@ $partidaComenzada = crearpartida($nombreJ1, $cartonJ1,$imagenJ1, $nombreJ2, $car
     }  
   }
 }
-header("location: partida.php/");//redireccionamos a partida.php
+header("location: partida.php");//redireccionamos a partida.php
 ?>
