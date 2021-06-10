@@ -19,8 +19,11 @@ if (isset($_POST['sacarBola'])) {
     escribirBolaLog($bola);
 }
 if (isset($_POST['finalizarBoton'])) {
-    reiniciarPartida();
+    finalizarPartida($db);
     header("location: seleccion.php");
+}
+if (isset($_POST['botonReiniciar'])) {
+    reiniciarPartida($db);
 }
 $jugador1=obtenerJugador($db, 1);
 $jugador2=obtenerJugador($db, 2);
@@ -43,7 +46,7 @@ $jugador4=obtenerJugador($db, 4);
                 <ul>
                     <li><img id="logoMenu" src="../../img/logot.png"/></li>
                     <form method="post" id="formMenu">
-                        <li><button class="botonMenu">Reiniciar</button></li>
+                        <li><button class="botonMenu" name="botonReiniciar">Reiniciar</button></li>
                         <li><button class="botonMenu" name="finalizarBoton">Finalizar</button></li>
                     </form>
                 </ul>
@@ -77,41 +80,35 @@ $jugador4=obtenerJugador($db, 4);
         </div>
         <section class="jugadores jugadoresTop">
             <?php 
-                if (!isset($_GET['continuar'])) {
-                    if ($jugador1!=false) {
-                        $cartonesEstado=obtenerEstadoCarton($db, 1);
-                        $jugador1->bind_result($id, $nombre, $imagen);
-                        $jugador1->fetch();
-                        imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
-                    }
-                    if ($jugador2!=false) {
-                        $cartonesEstado=obtenerEstadoCarton($db, 2);
-                        $jugador2->bind_result($id, $nombre, $imagen);
-                        $jugador2->fetch();
-                        imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
-                    }
+                if ($jugador1!=false) {
+                    $cartonesEstado=obtenerEstadoCarton($db, 1);
+                    $jugador1->bind_result($id, $nombre, $imagen);
+                    $jugador1->fetch();
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
                 }
-                
+                if ($jugador2!=false) {
+                    $cartonesEstado=obtenerEstadoCarton($db, 2);
+                    $jugador2->bind_result($id, $nombre, $imagen);
+                    $jugador2->fetch();
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                }
             ?>
 
         </section>
         <section class="jugadores jugadoresBottom">
             <?php 
-                if (!isset($_GET['continuar'])) {
-                    if ($jugador3!=false) {
-                        $cartonesEstado=obtenerEstadoCarton($db, 3);
-                        $jugador3->bind_result($id, $nombre, $imagen);
-                        $jugador3->fetch();
-                        imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
-                    }
-                    if ($jugador4!=false) {
-                        $cartonesEstado=obtenerEstadoCarton($db, 4);
-                        $jugador4->bind_result($id, $nombre, $imagen);
-                        $jugador4->fetch();
-                        imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
-                    }
+                if ($jugador3!=false) {
+                    $cartonesEstado=obtenerEstadoCarton($db, 3);
+                    $jugador3->bind_result($id, $nombre, $imagen);
+                    $jugador3->fetch();
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
                 }
-                
+                if ($jugador4!=false) {
+                    $cartonesEstado=obtenerEstadoCarton($db, 4);
+                    $jugador4->bind_result($id, $nombre, $imagen);
+                    $jugador4->fetch();
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                }               
             ?>
         </section>
         <section id="cartonesModalContenedor">

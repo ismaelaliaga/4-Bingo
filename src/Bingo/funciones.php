@@ -221,9 +221,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
     
 }
 
-function reiniciarPartida(){
-
-    include ('./conexionbd.php');
+function finalizarPartida($db){
 
     $ficheroCartones = fopen("./cartones.txt", "w+");
     fclose($ficheroCartones);
@@ -262,6 +260,40 @@ function reiniciarPartida(){
     $alterAutoIncrement->close();
     
     
+}
+
+function reiniciarPartida($db){
+    $ficheroCartones = fopen("./cartones.txt", "w+");
+    fclose($ficheroCartones);
+
+    $ficheroBolas = fopen("./bolas.txt", "w+");
+    fclose($ficheroBolas);
+
+    $ficherocantarlinea = fopen("./cantarlinea.txt", "w+");
+    fclose($ficherocantarlinea);
+
+    $truncateLog = $db->prepare("TRUNCATE `log`");
+    $truncateLog->execute();
+
+    $jugadores = $db->prepare("SELECT `id_jugador` FROM `jugadores`");
+    $jugadores->execute();
+    $jugadores->bind_result($idJugador);
+    while ($jugadores->fetch()) {
+        echo "$idJugador<br>";
+        $estadoInicial = $db->prepare("SELECT `estado_default` 
+        FROM `cartones` `c` 
+        INNER JOIN `partida` `p` ON `c`.`id_carton`=`p`.`id_carton` 
+        INNER JOIN `jugadores` `j` ON `j`.`id_jugador`=`p`.`id_jugador` 
+        WHERE `j`.`id_jugador`= ?;");
+        $estadoInicial->bind_param('i', $idJugador);
+        $estadoInicial->execute();
+        $estadoInicial->bind_result($estado_default);
+        while ($estadoInicial->fetch()) {
+            $actualizarEstado = $db->prepare("UPDATE `partida` SET `estado`=$estado_default");
+            $actualizarEstado->execute();
+        }
+    }
+
 }
 
 function imprimirLog($db)
