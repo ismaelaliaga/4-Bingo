@@ -60,9 +60,9 @@ $jugador4=obtenerJugador($db, 4);
         </section>
         <div id="ventanaLogContenedor">
             <section id="ventanaLog">
-            <ul>
-                <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
-            </ul>
+                <ul>
+                    <li>¡Bienvenidos a la partida! ¡Buena suerte!</li>
+                </ul>
             </section>
         </div>
         <section class="jugadores jugadoresTop">

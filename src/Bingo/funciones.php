@@ -256,15 +256,14 @@ function obtenerLog($db)
 function obtenerEstadoCarton($db, $idJugador)
 {
 
-    $cartonesSelect = $db->prepare("SELECT `estado_default` FROM `partida` where `id_jugador` = $idJugador  ;"); 
+    $cartonesSelect = $db->prepare("SELECT `id_carton`, `estado` FROM `partida` where `id_jugador` = $idJugador  ;"); 
     $cartonesSelect->execute();
     return $cartonesSelect;
 }
 
 function obtenerEstructuraCarton($db, $idJugador)
 {
-
-    $estructuraSelect = $db->prepare("SELECT `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
+    $estructuraSelect = $db->prepare("SELECT `id_carton`, `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
     $estructuraSelect->execute();
     return $estructuraSelect;
 }
@@ -279,36 +278,38 @@ function obtenerJugador($db, $idJugador){
     return false;
 }
 
-function imprimirJugador($nombre, $imagen, $cartonesEstado){
+function imprimirJugador($nombre, $imagen, $id, $cartonesEstado){
     echo "
         <article class='jugadorContenedor'>
                 <img class='imgJugador' src='$imagen'/>
                 <h2 class='nombreJugador'>$nombre</h2>
-                <section class='cartonesContenedor' id='1'>
+                <section class='cartonesContenedor' id='$id'>
     ";
-    $cartonesEstado->store_result();
     $cartonesEstado->bind_result($idCarton, $estado);
-    for ($i=0; $i < $cartonesEstado->num_rows-1; $i++) { 
+    while ($cartonesEstado->fetch()) {
         $tachados=0;
         echo "<article class='minicartonContenedor'>
-                <table class='minicarton'>
-                    <tr>";
-        while ($cartonesEstado->fetch()) {
-            $estadoArray=explode(", ", $estado);
-            if ($estadoArray[$i]==1) {
+        <table class='minicarton'>
+            <tr>";
+        $estadoArray=explode(", ", $estado);
+        for ($x=0; $x < 27; $x++) { 
+            if ($estadoArray[$x]==1) {
                 $celda="<i class='fas fa-circle'></i>";
                 $claseCelda="";
                 $tachados++;
             }
-            if ($estadoArray[$i]==2) {
+            if ($estadoArray[$x]==2) {
                 $celda="";
                 $claseCelda="nulo";
+            }if ($estadoArray[$x]==0) {
+                $celda="";
+                $claseCelda="";
             }
             echo "<td class=$claseCelda>$celda</td>";
-            if ($i==8 || $i==17) {
+            if ($x==8 || $x==17) {
                 echo "</tr><tr>";
             }
-            if ($i==26) {
+            if ($x==26) {
                 echo "</tr></table>
                     <h3>$tachados/15</h3>
                 </article>";
