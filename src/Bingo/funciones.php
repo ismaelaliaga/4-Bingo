@@ -68,12 +68,12 @@ function cantarLinea($id){
 
         $insertLogBingo = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
         $insertLogBingo->bind_param('s', $string); 
-        $string = "¡$nombreJugador ha cantado <b>bingo<b> en el cartón $id!";
+        $string = "<b>¡$nombreJugador ha cantado bingo en el cartón $id!</b>";
         $insertLogBingo->execute();
         $insertLogBingo->fetch();
         $insertLogBingo->close();
 
-        return $idJugador;
+        return $nombreJugador ;
     }
     elseif($esteCartonHaCantadoLinea == FALSE){
         foreach($estadoCarton[0] as $valor){

@@ -5,6 +5,7 @@ require_once ('./Bombo.php');
 include_once('funciones.php');
 include('./conexionbd.php');
 $tirada=0;
+$ganador="";
 if (isset($_POST['sacarBola'])) {
     $tirada++;
     $bombo = new Bombo;
@@ -14,7 +15,10 @@ if (isset($_POST['sacarBola'])) {
     $sentencia->bind_result($numeros);
     while($sentencia->fetch()){
         buscarNumeroEnElCarton($bola, $numeros);
-        cantarLinea($numeros);
+        $isBingo=cantarLinea($numeros);
+        if ($isBingo!=FALSE) {
+            $ganador=$isBingo;
+        }
     }
     escribirBolaLog($bola);
 }
@@ -62,9 +66,13 @@ $jugador4=obtenerJugador($db, 4);
                 <h2 class="back"><img  class="logo" src="../../img/logot.png"></h2>
             </div>
             </h2>
-            <form method="post">
-                <button id="sacarBolaBoton" name="sacarBola">Sacar bola</button>
-            </form>
+            <?php
+                if ($ganador=="") {
+                    echo "<form method=post>
+                            <button id=sacarBolaBoton name=sacarBola>Sacar bola</button>
+                        </form>";
+                }
+            ?>
         </section>
         <div id="ventanaLogContenedor">
             <section id="ventanaLog">
@@ -115,6 +123,19 @@ $jugador4=obtenerJugador($db, 4);
                 imprimirCartones($db, 4);
             ?>
         </section>
+        <?php
+            if ($ganador!="") {
+            echo "<section id=mensajeGanadorContenedor>
+                    <article id=mensajeGanador>
+                        <h3>¡$ganador ha ganado!</h3>
+                        <form method=post id=formFinalPartida>
+                            <button class=botonMenu name=finalizarBoton>Finalizar partida</button>
+                            <div class=botonCerrarMensajeFinal>Cerrar</div>
+                        </form>
+                    </article>
+                </section>";
+            }
+        ?>
     </main>
 </body>
 <script type="text/javascript" src="../../js/partida_comportamiento.js"></script>
