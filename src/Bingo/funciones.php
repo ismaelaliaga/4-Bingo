@@ -135,7 +135,7 @@ function cantarLineaEnBD($id){
     
     $insertLogLinea = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)");
     $insertLogLinea->bind_param('s', $string); 
-    $string = "$nombreJugador ha cantado <b>línea<b> en el cartón $id.";
+    $string = "<b>¡$nombreJugador ha cantado línea en el cartón $id!</b>";
     $insertLogLinea->execute();
     $insertLogLinea->fetch();
     $insertLogLinea->close();
@@ -150,7 +150,7 @@ function escribirBolaLog($bola){
     include ('./conexionbd.php');
     $insertLogBolaSacada = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
     $insertLogBolaSacada->bind_param('s', $string); 
-    $string = "El bombo ha sacado el $bola";
+    $string = "El bombo ha sacado el <b>$bola</b>";
     $insertLogBolaSacada->execute();
     $insertLogBolaSacada->fetch();
     $insertLogBolaSacada->close();
@@ -207,7 +207,7 @@ function buscarNumeroEnElCarton(int $numeroBombo, int $idCarton){
 
         $insertLogTachado = $db->prepare("INSERT INTO `log`(`log`) VALUES(?)"); 
         $insertLogTachado->bind_param('s', $string); 
-        $string = "<b>$nombreJugador</b> tacha el <b>$numeroBombo</b> en el cartón $idCarton";
+        $string = "<b>$nombreJugador</b> tacha el $numeroBombo en el cartón $idCarton";
         $insertLogTachado->execute();
         $insertLogTachado->fetch();
         $insertLogTachado->close();
@@ -262,54 +262,6 @@ function finalizarPartida($db){
     
 }
 
-function reiniciarPartida($db){
-    //guardar id de los jugadores
-    $jugadorestxt=fopen("./idJugadores.txt","c+");
-    //guardar los estados de los cartones
-    $jugadorestxt=fopen("./cartonesReiniciar.txt","c+");
-
-
-    $ficheroCartones = fopen("./cartones.txt", "w+");
-    fclose($ficheroCartones);
-
-    $ficheroBolas = fopen("./bolas.txt", "w+");
-    fclose($ficheroBolas);
-
-    $ficherocantarlinea = fopen("./cantarlinea.txt", "w+");
-    fclose($ficherocantarlinea);
-
-    $truncateLog = $db->prepare("TRUNCATE `log`");
-    $truncateLog->execute();
-
-    $jugadores = $db->prepare("SELECT `id_jugador` FROM `jugadores`");
-    $jugadores->execute();
-    $jugadores->bind_result($idJugador);
-    while ($jugadores->fetch()) {
-
-        fwrite($jugadorestxt,$idJugador.PHP_EOL);
-    }
-    fseek($jugadorestxt,0);
-    while($ids=fgets($jugadorestxt))
-    {
-        $ids=trim($ids);
-        $ids=intval($ids);
-
-    $estadoInicial = $db->prepare("SELECT `estado_default` 
-    FROM `cartones` `c` 
-    INNER JOIN `partida` `p` ON `c`.`id_carton`=`p`.`id_carton` 
-    INNER JOIN `jugadores` `j` ON `j`.`id_jugador`=`p`.`id_jugador` 
-    WHERE `j`.`id_jugador`= $ids ;");
-    $estadoInicial->execute();
-    $estadoInicial->bind_result($estado_default);
-    // $estadoInicial->bind_param('i', $ids);
-    while($estadoInicial->fetch())
-    {
-    $actualizarEstado = $db->prepare("UPDATE `partida` SET `estado`='$estado_default' ;");
-    $actualizarEstado->execute();
-     }
-    }
- }
-
 function imprimirLog($db)
 {
 
@@ -325,14 +277,18 @@ function imprimirLog($db)
 function obtenerEstadoCarton($db, $idJugador)
 {
 
-    $cartonesSelect = $db->prepare("SELECT `id_carton`, `estado` FROM `partida` where `id_jugador` = $idJugador  ;"); 
+    $cartonesSelect = $db->prepare("SELECT `id_carton`, `estado` FROM `partida` where `id_jugador` = $idJugador ORDER BY `id_carton`;"); 
     $cartonesSelect->execute();
     return $cartonesSelect;
 }
 
 function obtenerEstructuraCarton($db, $idJugador)
 {
-    $estructuraSelect = $db->prepare("SELECT `id_carton`, `numeros` FROM `cartones` where `id_jugador` = $idJugador  ;"); 
+    $estructuraSelect = $db->prepare("SELECT `c`.`id_carton`, `c`.`numeros`  FROM `cartones` `c` 
+    INNER JOIN `partida` `p` ON `c`.`id_carton`=`p`.`id_carton` 
+    INNER JOIN `jugadores` `j` ON `j`.`id_jugador`=`p`.`id_jugador` 
+    WHERE `j`.`id_jugador` = $idJugador 
+    ORDER BY `c`.`id_carton`;"); 
     $estructuraSelect->execute();
     return $estructuraSelect;
 }
@@ -386,6 +342,52 @@ function imprimirJugador($nombre, $imagen, $id, $cartonesEstado){
         }
     }
     echo "</section></article>";
+}
+
+function imprimirCartones($db, $idJugador){
+    $estructurasArray=[];
+    $estadosArray=[];
+    
+    $estadosCartones=obtenerEstadoCarton($db, $idJugador);
+    $estadosCartones->bind_result($idCarton, $estado);
+    $orden=0;
+    while ($estadosCartones->fetch()) {
+        $estadosArray[$orden]=$estado;
+        $orden++;
+    }
+
+    $estructurasCartones=obtenerEstructuraCarton($db, $idJugador);
+    $estructurasCartones->bind_result($idCarton, $numeros);
+    $orden=0;
+    while ($estructurasCartones->fetch()) {
+        $estructurasArray[$orden]=$numeros;
+        $orden++;
+    }
+    echo "<article class='cartonesJugadorModal' id='-$idJugador'>
+            <i class='fas fa-times-circle botonCerrarCartones'></i>";
+    for ($i=0; $i < count($estructurasArray); $i++) {
+        echo "<table class='cartonModal'>
+                <tr>";
+        $estadoArray=explode(", ", $estadosArray[$i]);
+        $estructuraArray=explode(", ", $estructurasArray[$i]);
+        for ($x=0; $x < 27; $x++) { 
+            if ($estadoArray[$x]==1) {
+                echo "<td class='celdaOcupada tachado'>".$estructuraArray[$x]."</td>";
+            }
+            if ($estadoArray[$x]==2) {
+                echo "<td class='celdaVacia'></td>";
+            }if ($estadoArray[$x]==0) {
+                echo "<td class='celdaOcupada'>".$estructuraArray[$x]."</td>";
+            }
+            if ($x==8 || $x==17) {
+                echo "</tr><tr>";
+            }
+            if ($x==26) {
+                echo "</tr></table>";
+            }
+        }
+    }
+    echo "</article>";
 }
 
 function ContadorTiradas()

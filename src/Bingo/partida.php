@@ -22,9 +22,6 @@ if (isset($_POST['finalizarBoton'])) {
     finalizarPartida($db);
     header("location: seleccion.php");
 }
-if (isset($_POST['botonReiniciar'])) {
-    reiniciarPartida($db);
-}
 $jugador1=obtenerJugador($db, 1);
 $jugador2=obtenerJugador($db, 2);
 $jugador3=obtenerJugador($db, 3);
@@ -46,7 +43,6 @@ $jugador4=obtenerJugador($db, 4);
                 <ul>
                     <li><img id="logoMenu" src="../../img/logot.png"/></li>
                     <form method="post" id="formMenu">
-                        <li><button class="botonMenu" name="botonReiniciar">Reiniciar</button></li>
                         <li><button class="botonMenu" name="finalizarBoton">Finalizar</button></li>
                     </form>
                 </ul>
@@ -81,16 +77,16 @@ $jugador4=obtenerJugador($db, 4);
         <section class="jugadores jugadoresTop">
             <?php 
                 if ($jugador1!=false) {
-                    $cartonesEstado=obtenerEstadoCarton($db, 1);
+                    $cartonesEstadoJ1=obtenerEstadoCarton($db, 1);
                     $jugador1->bind_result($id, $nombre, $imagen);
                     $jugador1->fetch();
-                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstadoJ1);
                 }
                 if ($jugador2!=false) {
-                    $cartonesEstado=obtenerEstadoCarton($db, 2);
+                    $cartonesEstadoJ2=obtenerEstadoCarton($db, 2);
                     $jugador2->bind_result($id, $nombre, $imagen);
                     $jugador2->fetch();
-                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstadoJ2);
                 }
             ?>
 
@@ -98,140 +94,26 @@ $jugador4=obtenerJugador($db, 4);
         <section class="jugadores jugadoresBottom">
             <?php 
                 if ($jugador3!=false) {
-                    $cartonesEstado=obtenerEstadoCarton($db, 3);
+                    $cartonesEstadoJ3=obtenerEstadoCarton($db, 3);
                     $jugador3->bind_result($id, $nombre, $imagen);
                     $jugador3->fetch();
-                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstadoJ3);
                 }
                 if ($jugador4!=false) {
-                    $cartonesEstado=obtenerEstadoCarton($db, 4);
+                    $cartonesEstadoJ4=obtenerEstadoCarton($db, 4);
                     $jugador4->bind_result($id, $nombre, $imagen);
                     $jugador4->fetch();
-                    imprimirJugador($nombre, $imagen, $id, $cartonesEstado);
+                    imprimirJugador($nombre, $imagen, $id, $cartonesEstadoJ4);
                 }               
             ?>
         </section>
         <section id="cartonesModalContenedor">
-            <article class="cartonesJugadorModal" id="-1">
-                <i class='fas fa-times-circle botonCerrarCartones'></i>
-                <table class="cartonModal">
-                    <tr>
-                        <td class="celdaOcupada">66</td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada tachado">6</td>
-                        <td class="celdaOcupada">6</td>
-                        <td class="celdaVacia"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-                </table>
-
-                <table class="cartonModal">
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-                </table>
-
-
-                <table class="cartonModal">
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                        <td class="celdaOcupada"></td>
-                    </tr>
-                </table>
-            </article>
+            <?php
+                imprimirCartones($db, 1);
+                imprimirCartones($db, 2);
+                imprimirCartones($db, 3);
+                imprimirCartones($db, 4);
+            ?>
         </section>
     </main>
 </body>
