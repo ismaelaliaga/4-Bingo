@@ -4,11 +4,25 @@ declare(strict_types=1);
 
 namespace Daw\Bingo;
 
+/**
+ * Sirve para sacar un número que no haya salido anteriormente
+ * 
+ * Tiene como atributo un array con todas las bolas disponibles, todas las que no han salido aún en la partida. 
+ * Tiene una función con la que saca una bola, devuelve un número y lo anota en un archivo .txt para no volver a incluirla en el atributo 
+ * (array) $bolas al crear el objeto, y no volver a sacarla
+ * 
+ * @version v1.0
+ * 
+ */
 final class Carton {
     private array $carton;
     private int $id;
     const CARTONES = 60;
 
+    /**
+     * El constructor
+     *
+     */
     public function __construct(){
         include ('conexionbd.php');
 
@@ -83,10 +97,20 @@ final class Carton {
         $db->close(); 
     }
 
+    /**
+     * Devuelve el atributo id del objeto
+     *
+     * @return int
+     */
     public function devolverID(){
         return $this->id;
     }
 
+    /**
+     * Devuelve el estado base, por defecto, del carton 
+     * 
+     * @return string
+     */
     public function obtenerEstado(){
 
         include ('conexionbd.php');
@@ -100,6 +124,11 @@ final class Carton {
         return $estado;
     }
 
+    /**
+     * Cambia la id del objeto
+     *
+     * @param int $numero Número que se le quiere asignar a la id
+     */
     public function asignarID($numero){
         $this->id = $numero;
     }

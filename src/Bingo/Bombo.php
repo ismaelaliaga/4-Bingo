@@ -5,13 +5,24 @@ declare(strict_types=1);
 namespace Daw\Bingo;
 
 
-
+/**
+ * Sirve para sacar un número que no haya salido anteriormente
+ * 
+ * Tiene como atributo un array con todas las bolas disponibles, todas las que no han salido aún en la partida. 
+ * Tiene una función con la que saca una bola, devuelve un número y lo anota en un archivo .txt para no volver a incluirla en el atributo 
+ * (array) $bolas al crear el objeto, y no volver a sacarla
+ * 
+ * @version v1.0
+ * 
+ */
 final class Bombo {
     private array $bolas;
 
+    /**
+     * El constructor
+     *
+     */
     public function __construct(){
-        //$bolasDisponibles no se utiliza??
-        // $bolasDisponibles = array();
         $contadorDeFgets = 0;
 
         $fichero = fopen("./bolas.txt", "rb+");
@@ -48,6 +59,16 @@ final class Bombo {
         $this->bolas = array_values($totalDeBolasPosibles);
     }
 
+    /**
+     * Devuelve una de las bolas disponibles 
+     * 
+     * Devuelve uno de los números del atributo (array) $bolas al azar, lo anota en el .txt para no volver a incluir dicho número en
+     * el atributo $bolas al volver a crear otro objeto (esto es porque hay que crear varios objetos de la clase Bombo durante una partida, 
+     * así que es necesario almacenar en algún sitio las bolas que han salido en la partida hasta el momento. Al comenzar una partida se 
+     * reinician los ficheros .txt).
+     *
+     * @return int
+     */
     public function sacarBola(){
 
         $numeroDeBolas = count($this->bolas);

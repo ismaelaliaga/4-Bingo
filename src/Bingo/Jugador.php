@@ -3,6 +3,11 @@ declare(strict_types=1);
 namespace Daw\Bingo;
 require_once ('Carton.php');
 
+/**
+ * Inserta en la base de datos el nombre, la imagen y los cartones del jugador
+ * 
+ * @version v1.0
+ */
 final class Jugador {
 
     private ?string $nombre;
@@ -11,6 +16,10 @@ final class Jugador {
     private $carton2;
     private $carton3;
 
+    /**
+     * El constructor
+     *
+     */
     public function __construct($nombre, $numeroCartones,$imagen){
         
         include ('conexionbd.php');
@@ -98,11 +107,20 @@ final class Jugador {
         $db->close();
     }
 
+    /**
+     * Devuelve el atributo nombre del objeto
+     * 
+     * @return string
+     */
     public function getNombre(){
         return $this->nombre;
     }
 
-
+    /**
+     * Devuelve los cartones del objeto
+     * 
+     * @return array
+     */
     public function getCartones(){
         $array = array($this->carton1,$this->carton2,$this->carton3);
         return $array;
